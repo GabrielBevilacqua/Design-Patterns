@@ -4,7 +4,7 @@ interface
 
 type
   ITipoDeVoo = interface(IInterface)
-    procedure Fly;
+    function Fly: string;
   end;
 
 implementation

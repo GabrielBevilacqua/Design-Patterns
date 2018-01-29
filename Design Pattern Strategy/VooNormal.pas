@@ -8,15 +8,14 @@ uses
 type
   TVoarComAsas = class(TInterfacedObject, ITipoDeVoo)
     public
-      procedure Fly;
+      function Fly: string;
   end;
 
 implementation
 
-procedure TVoarComAsas.Fly;
+function TVoarComAsas.Fly: string;
 begin
-  Writeln('Estou voando com minhas asas !');
-  Readln;
+  Result := 'Estou voando com minhas asas !';
 end;
 
 end.

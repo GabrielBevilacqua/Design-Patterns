@@ -8,17 +8,17 @@ uses
 type
   TViralata = class(TInterfacedObject, IRacaDog)
   public
-    procedure RacaDog;
+    function RacaDog: string;
   end;
 
 implementation
 
 { TViralata }
 
-procedure TViralata.RacaDog;
+function TViralata.RacaDog: string;
 begin
-  Writeln('E ai parça sou um Viralata da quebrada mermao !');
-  Readln;
+  Result := 'E ai parça sou um Viralata da quebrada mermao !';
+
 end;
 
 end.

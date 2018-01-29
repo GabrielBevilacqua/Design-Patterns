@@ -87,6 +87,8 @@
         </DelphiCompile>
         <DCCReference Include="TestDogMau.pas"/>
         <DCCReference Include="..\DogMau.pas"/>
+        <DCCReference Include="TestPombo.pas"/>
+        <DCCReference Include="..\Pomba.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

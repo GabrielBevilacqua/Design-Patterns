@@ -17,7 +17,9 @@ program DesignPatternTests;
 uses
   DUnitTestRunner,
   TestDogMau in 'TestDogMau.pas',
-  DogMau in '..\DogMau.pas';
+  DogMau in '..\DogMau.pas',
+  TestPombo in 'TestPombo.pas',
+  Pomba in '..\Pomba.pas';
 
 {$R *.RES}
 

@@ -8,17 +8,16 @@ uses
 
 type
   TFlyPomba = class(TInterfacedObject, ITipoDeVoo)
-    procedure Fly;
+    function Fly: string;
   end;
 
 implementation
 
 { FlyPomba }
 
-procedure TFlyPomba.Fly;
+function TFlyPomba.Fly: string;
 begin
-  Writeln('Pruu Estou Voando e Cagando !');
-  Readln;
+  Result := 'Pruu Estou Voando e Cagando !';
 end;
 
 end.

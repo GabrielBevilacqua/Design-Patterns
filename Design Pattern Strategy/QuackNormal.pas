@@ -7,16 +7,14 @@ uses
 
 type
   TQuackNormal = class(TInterfacedObject, ITipoDeQuack)
-    procedure Quack;
+    function Quack: string;
   end;
 
 implementation
 
-procedure TQuackNormal.Quack;
+function TQuackNormal.Quack: string;
 begin
-  Readln;
-  Writeln('I am a Normal Duck, Quack!');
-  Readln;
+  Result := 'I am a Normal Duck, Quack!';
 end;
 
 end.
