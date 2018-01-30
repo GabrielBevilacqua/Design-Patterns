@@ -10,7 +10,7 @@ type
     function NovoObservador(TObserfervador: IObservador): Boolean;
     function NotificarObservador: Boolean;
     function DeletarObservador(TObserfervador: IObservador): Boolean;
-  End;
+  end;
 
 implementation
 
