@@ -6,7 +6,10 @@ program ProjectObserver;
 
 uses
   System.SysUtils,
-  DadosDoTempo in 'DadosDoTempo.pas';
+  DadosDoTempo in 'DadosDoTempo.pas',
+  InterfaceDoAssunto in 'InterfaceDoAssunto.pas',
+  Observador in 'Observador.pas',
+  InterfaceDoObservador in 'InterfaceDoObservador.pas';
 
 begin
   try
