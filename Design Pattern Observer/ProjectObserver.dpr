@@ -8,8 +8,9 @@ uses
   System.SysUtils,
   DadosDoTempo in 'DadosDoTempo.pas',
   InterfaceDoAssunto in 'InterfaceDoAssunto.pas',
-  Observador in 'Observador.pas',
-  InterfaceDoObservador in 'InterfaceDoObservador.pas';
+  InterfaceDoObservador in 'InterfaceDoObservador.pas',
+  ExibirTempoAtual in 'ExibirTempoAtual.pas',
+  InterfaceExibir in 'InterfaceExibir.pas';
 
 begin
   try
