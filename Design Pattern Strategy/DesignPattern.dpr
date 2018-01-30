@@ -30,13 +30,13 @@ var
   NumAnimal: Integer;
 
 begin
+  FTela := TTelaDeSelecao.Create;
+  // FBird := TDuckClass.Create(TVoarComAsas.Create); -->> "ensinando classe pai a como voar"
+  FBird := TBird.Create;
+  FPomba := TPomba.Create;
+  FBob := TDogMau.Create;
+  // FBob := TDogMau.Create(TLatidoComum.Create, TViralata.Create); Utilizando Create do DogClass.
   try
-    FTela := TTelaDeSelecao.Create;
-    // FBird := TDuckClass.Create(TVoarComAsas.Create); -->> "ensinando classe pai a como voar"
-    FBird := TBird.Create;
-    FPomba := TPomba.Create;
-    FBob := TDogMau.Create;
-    // FBob := TDogMau.Create(TLatidoComum.Create, TViralata.Create); Utilizando Create do DogClass.
     try
       FTela.Tela;
       Readln(NumAnimal);
@@ -49,18 +49,24 @@ begin
       case NumAnimal of
         1:
           begin
-            FBird.FTipoDeQuack.Quack;
-            FBird.FTipoDeVoo.Fly;
+            Writeln(FBird.Quack);
+            Readln;
+            Writeln(FBird.Fly);
+            Readln;
           end;
         2:
           begin
-            FPomba.FTipoDeQuack.Quack;
-            FPomba.FTipoDeVoo.Fly;
+            Writeln(FPomba.Quack);
+            Readln;
+            Writeln(FPomba.Fly);
+            Readln;
           end;
         3:
           begin
-            FBob.FTipoDeRaca.RacaDog;
-            FBob.FTipoDeLatido.Latir;
+            Writeln(FBob.RacaDog);
+            Readln;
+            Writeln(FBob.Latir);
+            Readln;
           end;
 
       end;

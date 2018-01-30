@@ -4,7 +4,7 @@ interface
 
 type
   IRacaDog = interface(IInterface)
-    procedure RacaDog;
+    function RacaDog: string;
   end;
 
 implementation

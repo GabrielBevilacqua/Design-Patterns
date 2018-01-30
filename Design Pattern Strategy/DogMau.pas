@@ -18,6 +18,6 @@ constructor TDogMau.Create;
 begin
   FTipoDeRaca := TViralata.Create;
   FTipoDeLatido := TLatidoComum.Create;
-end;
+ end;
 
 end.

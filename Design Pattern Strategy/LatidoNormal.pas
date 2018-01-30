@@ -8,17 +8,16 @@ uses
 type
   TLatidoComum = class(TInterfacedObject, ITipoDeLatido)
   public
-    procedure Latir;
+    function Latir: string;
   end;
 
 implementation
 
 { TLatidoComum }
 
-procedure TLatidoComum.Latir;
+function TLatidoComum.Latir: string;
 begin
-  Writeln('AU AU AU !');
-  Readln;
+  Result := 'AU AU AU !';
 end;
 
 end.

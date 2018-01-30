@@ -4,7 +4,7 @@ interface
 
 type
   ITipoDeQuack = interface(IInterface)
-    procedure Quack;
+    function Quack: string;
   end;
 
 implementation

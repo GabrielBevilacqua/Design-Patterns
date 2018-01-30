@@ -7,15 +7,14 @@ uses
 
 type
   TPruu = class(TInterfacedObject, ITipoDeQuack)
-    procedure Quack;
+    function Quack: string;
   end;
 
 implementation
 
-procedure TPruu.Quack;
+function TPruu.Quack: string;
 begin
-  Writeln('Pruuuuuuu sou um Pombo');
-  Readln;
+  Result := 'Pruuuuuuu sou um Pombo';
 end;
 
 end.

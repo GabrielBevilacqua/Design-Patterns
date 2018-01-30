@@ -10,32 +10,20 @@ type
   public
     FTipoDeVoo : ITipoDeVoo;
     FTipoDeQuack : ITipoDeQuack;
-    procedure Quack;
-    procedure Fly;
-    constructor CreateVoo(ATipoDeVoo: ITipoDeVoo);
-    constructor CreateQuack(ATipoDeQuack: ITipoDeQuack);
+    function Quack: string;
+    function Fly: string;
 end;
 
 implementation
 
-constructor TDuckClass.CreateVoo(ATipoDeVoo: ITipoDeVoo);
+function TDuckClass.Fly: string;
 begin
-  FTipoDeVoo := ATipoDeVoo;
+  Result := FTipoDeVoo.Fly;
 end;
 
-constructor TDuckClass.CreateQuack(ATipoDeQuack: ITipoDeQuack);
+function TDuckClass.Quack: string;
 begin
-  FTipoDeQuack := ATipoDeQuack;
-end;
-
-procedure TDuckClass.Fly;
-begin
-  FTipoDeVoo.Fly;
-end;
-
-procedure TDuckClass.Quack;
-begin
-  FTipoDeQuack.Quack;
+  Result := FTipoDeQuack.Quack;
 end;
 
 end.

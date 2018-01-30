@@ -1,16 +1,21 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{3E021CDA-3FCE-4717-AFDD-5266E08A820E}</ProjectGuid>
+        <ProjectGuid>{D8FEE471-7875-495A-B653-286D4998970D}</ProjectGuid>
         <ProjectVersion>16.1</ProjectVersion>
         <FrameworkType>None</FrameworkType>
+        <MainSource>ProjectObserver.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Console</AppType>
-        <MainSource>DesignPatternTests.dpr</MainSource>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Android' and '$(Base)'=='true') or '$(Base_Android)'!=''">
+        <Base_Android>true</Base_Android>
+        <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
@@ -40,11 +45,9 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <SanitizedProjectName>DesignPatternTests</SanitizedProjectName>
-        <DCC_Define>_CONSOLE_TESTRUNNER;$(DCC_Define)</DCC_Define>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-        <DCC_UnitSearchPath>$(BDS)\Source\DUnit\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <DCC_DcuOutput>.</DCC_DcuOutput>
+        <SanitizedProjectName>ProjectObserver</SanitizedProjectName>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
@@ -52,14 +55,27 @@
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
     </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Android)'!=''">
+        <Android_SplashImage426>$(BDS)\bin\Artwork\Android\FM_SplashImage_426x320.png</Android_SplashImage426>
+        <Android_LauncherIcon96>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_96x96.png</Android_LauncherIcon96>
+        <Android_LauncherIcon48>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_48x48.png</Android_LauncherIcon48>
+        <Android_SplashImage960>$(BDS)\bin\Artwork\Android\FM_SplashImage_960x720.png</Android_SplashImage960>
+        <Android_SplashImage640>$(BDS)\bin\Artwork\Android\FM_SplashImage_640x480.png</Android_SplashImage640>
+        <Android_LauncherIcon72>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_72x72.png</Android_LauncherIcon72>
+        <Android_SplashImage470>$(BDS)\bin\Artwork\Android\FM_SplashImage_470x320.png</Android_SplashImage470>
+        <Android_LauncherIcon144>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_144x144.png</Android_LauncherIcon144>
+        <Android_LauncherIcon36>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_36x36.png</Android_LauncherIcon36>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
-        <DCC_UsePackage>dxPScxSchedulerLnkRS21;cxSchedulerRibbonStyleEventEditorRS21;cxSchedulerRS21;FireDACPgDriver;dxSkinOffice2007BlueRS21;cxTreeListdxBarPopupMenuRS21;dxSkinHighContrastRS21;cxPivotGridRS21;dxSkinSevenRS21;DBXInterBaseDriver;DataSnapServer;DataSnapCommon;dxHttpIndyRequestRS21;dxSpreadSheetReportDesignerRS21;dxSkinVisualStudio2013DarkRS21;dxGaugeControlRS21;cxEditorsRS21;DbxCommonDriver;vclimg;cxPivotGridOLAPRS21;dxPSdxGaugeControlLnkRS21;dbxcds;dxPsPrVwAdvRS21;DatasnapConnectorsFreePascal;dxTileControlRS21;dxSkinSilverRS21;dxSkinMoneyTwinsRS21;vcldb;cxTreeListRS21;dxdborRS21;dxOfficeCoreRS21;frxDBX21;dxWizardControlRS21;dxBarExtItemsRS21;dxSkinBlueprintRS21;CustomIPTransport;dxSkinOffice2016ColorfulRS21;dsnap;IndyIPServer;dxSkinOffice2010BlackRS21;IndyCore;dxSkinsdxBarPainterRS21;dxSkinValentineRS21;CloudService;dxRichEditCoreRS21;dxSkinDevExpressStyleRS21;FireDACIBDriver;frxADO21;dxPScxPCProdRS21;dxSkinCaramelRS21;dxPSRichEditControlLnkRS21;dxSkinOffice2013DarkGrayRS21;dxDockingRS21;dxLayoutControlRS21;dsnapxml;FireDACDb2Driver;dxSkinscxSchedulerPainterRS21;dxPSLnksRS21;dxPSdxDBOCLnkRS21;dxSkinVS2010RS21;cxLibraryRS21;dxPSdxMapControlLnkRS21;bindcompfmx;dxPSdxPDFViewerLnkRS21;cxDataRS21;dxComnRS21;FireDACODBCDriver;RESTBackendComponents;dxSkinBlackRS21;dxSkinDarkSideRS21;dbrtl;FireDACCommon;bindcomp;inetdb;dxPScxTLLnkRS21;DbxDevartPostgreSQLDriver210;DBXOdbcDriver;vclFireDAC;dxRichEditInplaceRS21;xmlrtl;dxRichEditDocumentModelRS21;cxExportRS21;FireDACCommonDriver;dxSkinOffice2007PinkRS21;dxFlowChartRS21;bindengine;vclactnband;soaprtl;bindcompvcl;cxPageControlRS21;dxCoreRS21;vclie;dxSpreadSheetConditionalFormattingDialogsRS21;dxPSCoreRS21;dxSkinOffice2007BlackRS21;dxPSdxDBTVLnkRS21;dxPScxCommonRS21;dxADOServerModeRS21;FireDACMSSQLDriver;DBXInformixDriver;dxSkinLilianRS21;dxSkinWhiteprintRS21;DataSnapServerMidas;dsnapcon;DBXFirebirdDriver;dxNavBarRS21;inet;dxRibbonRS21;dxSkinsdxNavBarPainterRS21;FireDACMySQLDriver;soapmidas;vclx;dxSkinOffice2013WhiteRS21;dxSkinsCoreRS21;DBXSybaseASADriver;dxFireDACServerModeRS21;dxSkinSharpPlusRS21;RESTComponents;dbexpress;dxSkinSevenClassicRS21;IndyIPClient;dxThemeRS21;FireDACSqliteDriver;dxSkinBlueRS21;FireDACDSDriver;dxDBXServerModeRS21;DBXSqliteDriver;dxSkinsdxDLPainterRS21;dxRichEditControlRS21;fmx;dxSkinMetropolisDarkRS21;cxVerticalGridRS21;IndySystem;frxe21;dxSpreadSheetRS21;tethering;dxSkinMetropolisRS21;dxSkinGlassOceansRS21;dxSkinSummer2008RS21;DataSnapClient;dxPScxPivotGridLnkRS21;frx21;DataSnapProviderClient;dxPSPrVwRibbonRS21;DBXSybaseASEDriver;dxSkinVisualStudio2013BlueRS21;cxGridRS21;dxPDFViewerRS21;MetropolisUILiveTile;vcldsnap;dxSpellCheckerRS21;dxSkinLondonLiquidSkyRS21;dxSkinMcSkinRS21;dxSkinOffice2010SilverRS21;dxSkinOffice2007GreenRS21;fmxFireDAC;DBXDb2Driver;dxSkinFoggyRS21;DBXOracleDriver;vclribbon;dxtrmdRS21;fmxase;vcl;dxBarExtDBItemsRS21;dxGDIPlusRS21;DBXMSSQLDriver;IndyIPCommon;dxSkinOffice2007SilverRS21;DataSnapFireDAC;FireDACDBXDriver;dxPSdxSpreadSheetLnkRS21;dxSkinStardustRS21;soapserver;dxdbtrRS21;inetdbxpress;FireDACInfxDriver;dxPScxGridLnkRS21;dxPSdxFCLnkRS21;dxSkinCoffeeRS21;adortl;dxSkinOffice2016DarkRS21;dxSpreadSheetInplaceRichEditRS21;FireDACASADriver;dxSkinVisualStudio2013LightRS21;fsADO21;dxTabbedMDIRS21;emsclientfiredac;rtl;dxPSdxOCLnkRS21;DbxClientDriver;dxorgcRS21;dxPScxExtCommonRS21;dxSkinDarkRoomRS21;dxPSdxLCLnkRS21;frxDB21;dxMapControlRS21;DataSnapNativeClient;svnui;dxSkinSpringTimeRS21;IndyProtocols;DBXMySQLDriver;cxPivotGridChartRS21;dxSkinOffice2013LightGrayRS21;dxRichEditControlCoreRS21;bindcompdbx;fsDB21;dxSkinPumpkinRS21;fs21;cxSchedulerTreeBrowserRS21;dxmdsRS21;dxSkinDevExpressDarkStyleRS21;dxSkinSharpRS21;FireDACADSDriver;vcltouch;dxSkinscxPCPainterRS21;dxServerModeRS21;emsclient;dxSkinsdxRibbonPainterRS21;VCLRESTComponents;FireDAC;VclSmp;dxBarDBNavRS21;dxSkinTheAsphaltWorldRS21;dxRibbonCustomizationFormRS21;dxSkinXmas2008BlueRS21;DataSnapConnectors;dxSkinLiquidSkyRS21;cxSchedulerGridRS21;fmxobj;dxPScxVGridLnkRS21;svn;dxBarRS21;FireDACOracleDriver;fmxdae;dxSkinOffice2010BlueRS21;FireDACMSAccDriver;DataSnapIndy10ServerTransport;dxSkiniMaginaryRS21;$(DCC_UsePackage)</DCC_UsePackage>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_UsePackage>dxPScxSchedulerLnkRS21;cxSchedulerRibbonStyleEventEditorRS21;cxSchedulerRS21;FireDACPgDriver;dxSkinOffice2007BlueRS21;cxTreeListdxBarPopupMenuRS21;dxSkinHighContrastRS21;cxPivotGridRS21;dxSkinSevenRS21;DBXInterBaseDriver;DataSnapServer;DataSnapCommon;dxHttpIndyRequestRS21;dxSpreadSheetReportDesignerRS21;dxSkinVisualStudio2013DarkRS21;dxGaugeControlRS21;cxEditorsRS21;DbxCommonDriver;vclimg;cxPivotGridOLAPRS21;dxPSdxGaugeControlLnkRS21;dbxcds;dxPsPrVwAdvRS21;DatasnapConnectorsFreePascal;dxTileControlRS21;dxSkinSilverRS21;dxSkinMoneyTwinsRS21;vcldb;cxTreeListRS21;dxdborRS21;dxOfficeCoreRS21;frxDBX21;dxWizardControlRS21;dxBarExtItemsRS21;dxSkinBlueprintRS21;CustomIPTransport;dxSkinOffice2016ColorfulRS21;dsnap;IndyIPServer;dxSkinOffice2010BlackRS21;IndyCore;dxSkinsdxBarPainterRS21;dxSkinValentineRS21;CloudService;dxRichEditCoreRS21;dxSkinDevExpressStyleRS21;FireDACIBDriver;frxADO21;dxPScxPCProdRS21;dxSkinCaramelRS21;dxPSRichEditControlLnkRS21;dxSkinOffice2013DarkGrayRS21;dxDockingRS21;dxLayoutControlRS21;dsnapxml;FireDACDb2Driver;dxSkinscxSchedulerPainterRS21;dxPSLnksRS21;dxPSdxDBOCLnkRS21;dxSkinVS2010RS21;cxLibraryRS21;dxPSdxMapControlLnkRS21;bindcompfmx;dxPSdxPDFViewerLnkRS21;cxDataRS21;dxComnRS21;FireDACODBCDriver;RESTBackendComponents;dxSkinBlackRS21;dxSkinDarkSideRS21;dbrtl;FireDACCommon;bindcomp;inetdb;dxPScxTLLnkRS21;DbxDevartPostgreSQLDriver210;DBXOdbcDriver;vclFireDAC;dxRichEditInplaceRS21;xmlrtl;dxRichEditDocumentModelRS21;cxExportRS21;FireDACCommonDriver;dxSkinOffice2007PinkRS21;dxFlowChartRS21;bindengine;vclactnband;soaprtl;bindcompvcl;cxPageControlRS21;dxCoreRS21;vclie;dxSpreadSheetConditionalFormattingDialogsRS21;dxPSCoreRS21;dxSkinOffice2007BlackRS21;dxPSdxDBTVLnkRS21;dxPScxCommonRS21;dxADOServerModeRS21;FireDACMSSQLDriver;DBXInformixDriver;dxSkinLilianRS21;dxSkinWhiteprintRS21;DataSnapServerMidas;dsnapcon;DBXFirebirdDriver;dxNavBarRS21;inet;dxRibbonRS21;dxSkinsdxNavBarPainterRS21;FireDACMySQLDriver;soapmidas;vclx;dxSkinOffice2013WhiteRS21;dxSkinsCoreRS21;DBXSybaseASADriver;dxFireDACServerModeRS21;dxSkinSharpPlusRS21;RESTComponents;dbexpress;dxSkinSevenClassicRS21;IndyIPClient;dxThemeRS21;FireDACSqliteDriver;dxSkinBlueRS21;FireDACDSDriver;dxDBXServerModeRS21;DBXSqliteDriver;dxSkinsdxDLPainterRS21;dxRichEditControlRS21;fmx;dxSkinMetropolisDarkRS21;cxVerticalGridRS21;IndySystem;frxe21;dxSpreadSheetRS21;tethering;dxSkinMetropolisRS21;dxSkinGlassOceansRS21;dxSkinSummer2008RS21;DataSnapClient;dxPScxPivotGridLnkRS21;frx21;DataSnapProviderClient;dxPSPrVwRibbonRS21;DBXSybaseASEDriver;dxSkinVisualStudio2013BlueRS21;cxGridRS21;dxPDFViewerRS21;MetropolisUILiveTile;vcldsnap;dxSpellCheckerRS21;dxSkinLondonLiquidSkyRS21;dxSkinMcSkinRS21;dxSkinOffice2010SilverRS21;dxSkinOffice2007GreenRS21;fmxFireDAC;DBXDb2Driver;dxSkinFoggyRS21;DBXOracleDriver;vclribbon;dxtrmdRS21;fmxase;vcl;dxBarExtDBItemsRS21;dxGDIPlusRS21;DBXMSSQLDriver;IndyIPCommon;dxSkinOffice2007SilverRS21;DataSnapFireDAC;FireDACDBXDriver;dxPSdxSpreadSheetLnkRS21;dxSkinStardustRS21;soapserver;dxdbtrRS21;inetdbxpress;FireDACInfxDriver;dxPScxGridLnkRS21;dxPSdxFCLnkRS21;dxSkinCoffeeRS21;adortl;dxSkinOffice2016DarkRS21;dxSpreadSheetInplaceRichEditRS21;FireDACASADriver;dxSkinVisualStudio2013LightRS21;fsADO21;dxTabbedMDIRS21;emsclientfiredac;rtl;dxPSdxOCLnkRS21;DbxClientDriver;dxorgcRS21;dxPScxExtCommonRS21;dxSkinDarkRoomRS21;dxPSdxLCLnkRS21;frxDB21;dxMapControlRS21;DataSnapNativeClient;svnui;dxSkinSpringTimeRS21;IndyProtocols;DBXMySQLDriver;cxPivotGridChartRS21;dxSkinOffice2013LightGrayRS21;dxRichEditControlCoreRS21;bindcompdbx;fsDB21;dxSkinPumpkinRS21;fs21;cxSchedulerTreeBrowserRS21;dxmdsRS21;dxSkinDevExpressDarkStyleRS21;dxSkinSharpRS21;FireDACADSDriver;vcltouch;dxSkinscxPCPainterRS21;dxServerModeRS21;emsclient;dxSkinsdxRibbonPainterRS21;VCLRESTComponents;FireDAC;VclSmp;dxBarDBNavRS21;dxSkinTheAsphaltWorldRS21;dxRibbonCustomizationFormRS21;dxSkinXmas2008BlueRS21;DataSnapConnectors;dxSkinLiquidSkyRS21;cxSchedulerGridRS21;fmxobj;dxPScxVGridLnkRS21;svn;dxBarRS21;FireDACOracleDriver;fmxdae;dxSkinOffice2010BlueRS21;FireDACMSAccDriver;DataSnapIndy10ServerTransport;dxSkiniMaginaryRS21;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_ConsoleTarget>true</DCC_ConsoleTarget>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_UsePackage>dxPScxSchedulerLnkRS21;cxSchedulerRibbonStyleEventEditorRS21;cxSchedulerRS21;FireDACPgDriver;dxSkinOffice2007BlueRS21;cxTreeListdxBarPopupMenuRS21;dxSkinHighContrastRS21;cxPivotGridRS21;dxSkinSevenRS21;DBXInterBaseDriver;DataSnapServer;DataSnapCommon;dxHttpIndyRequestRS21;dxSpreadSheetReportDesignerRS21;dxSkinVisualStudio2013DarkRS21;dxGaugeControlRS21;cxEditorsRS21;DbxCommonDriver;vclimg;cxPivotGridOLAPRS21;dxPSdxGaugeControlLnkRS21;dbxcds;dxPsPrVwAdvRS21;DatasnapConnectorsFreePascal;dxTileControlRS21;dxSkinSilverRS21;dxSkinMoneyTwinsRS21;vcldb;cxTreeListRS21;dxdborRS21;dxOfficeCoreRS21;dxWizardControlRS21;dxBarExtItemsRS21;dxSkinBlueprintRS21;CustomIPTransport;dxSkinOffice2016ColorfulRS21;dsnap;IndyIPServer;dxSkinOffice2010BlackRS21;IndyCore;dxSkinsdxBarPainterRS21;dxSkinValentineRS21;CloudService;dxRichEditCoreRS21;dxSkinDevExpressStyleRS21;FireDACIBDriver;dxPScxPCProdRS21;dxSkinCaramelRS21;dxPSRichEditControlLnkRS21;dxSkinOffice2013DarkGrayRS21;dxDockingRS21;dxLayoutControlRS21;dsnapxml;FireDACDb2Driver;dxSkinscxSchedulerPainterRS21;dxPSLnksRS21;dxPSdxDBOCLnkRS21;dxSkinVS2010RS21;cxLibraryRS21;dxPSdxMapControlLnkRS21;bindcompfmx;dxPSdxPDFViewerLnkRS21;cxDataRS21;dxComnRS21;FireDACODBCDriver;RESTBackendComponents;dxSkinBlackRS21;dxSkinDarkSideRS21;dbrtl;FireDACCommon;bindcomp;inetdb;dxPScxTLLnkRS21;DBXOdbcDriver;vclFireDAC;dxRichEditInplaceRS21;xmlrtl;dxRichEditDocumentModelRS21;cxExportRS21;FireDACCommonDriver;dxSkinOffice2007PinkRS21;dxFlowChartRS21;bindengine;vclactnband;soaprtl;bindcompvcl;cxPageControlRS21;dxCoreRS21;vclie;dxSpreadSheetConditionalFormattingDialogsRS21;dxPSCoreRS21;dxSkinOffice2007BlackRS21;dxPSdxDBTVLnkRS21;dxPScxCommonRS21;dxADOServerModeRS21;FireDACMSSQLDriver;DBXInformixDriver;dxSkinLilianRS21;dxSkinWhiteprintRS21;DataSnapServerMidas;dsnapcon;DBXFirebirdDriver;dxNavBarRS21;inet;dxRibbonRS21;dxSkinsdxNavBarPainterRS21;FireDACMySQLDriver;soapmidas;vclx;dxSkinOffice2013WhiteRS21;dxSkinsCoreRS21;DBXSybaseASADriver;dxFireDACServerModeRS21;dxSkinSharpPlusRS21;RESTComponents;dbexpress;dxSkinSevenClassicRS21;IndyIPClient;dxThemeRS21;FireDACSqliteDriver;dxSkinBlueRS21;FireDACDSDriver;dxDBXServerModeRS21;DBXSqliteDriver;dxSkinsdxDLPainterRS21;dxRichEditControlRS21;fmx;dxSkinMetropolisDarkRS21;cxVerticalGridRS21;IndySystem;dxSpreadSheetRS21;tethering;dxSkinMetropolisRS21;dxSkinGlassOceansRS21;dxSkinSummer2008RS21;DataSnapClient;dxPScxPivotGridLnkRS21;DataSnapProviderClient;dxPSPrVwRibbonRS21;DBXSybaseASEDriver;dxSkinVisualStudio2013BlueRS21;cxGridRS21;dxPDFViewerRS21;MetropolisUILiveTile;vcldsnap;dxSpellCheckerRS21;dxSkinLondonLiquidSkyRS21;dxSkinMcSkinRS21;dxSkinOffice2010SilverRS21;dxSkinOffice2007GreenRS21;fmxFireDAC;DBXDb2Driver;dxSkinFoggyRS21;DBXOracleDriver;vclribbon;dxtrmdRS21;fmxase;vcl;dxBarExtDBItemsRS21;dxGDIPlusRS21;DBXMSSQLDriver;IndyIPCommon;dxSkinOffice2007SilverRS21;DataSnapFireDAC;FireDACDBXDriver;dxPSdxSpreadSheetLnkRS21;dxSkinStardustRS21;soapserver;dxdbtrRS21;inetdbxpress;FireDACInfxDriver;dxPScxGridLnkRS21;dxPSdxFCLnkRS21;dxSkinCoffeeRS21;adortl;dxSkinOffice2016DarkRS21;dxSpreadSheetInplaceRichEditRS21;FireDACASADriver;dxSkinVisualStudio2013LightRS21;dxTabbedMDIRS21;emsclientfiredac;rtl;dxPSdxOCLnkRS21;DbxClientDriver;dxorgcRS21;dxPScxExtCommonRS21;dxSkinDarkRoomRS21;dxPSdxLCLnkRS21;dxMapControlRS21;DataSnapNativeClient;dxSkinSpringTimeRS21;IndyProtocols;DBXMySQLDriver;cxPivotGridChartRS21;dxSkinOffice2013LightGrayRS21;dxRichEditControlCoreRS21;bindcompdbx;dxSkinPumpkinRS21;cxSchedulerTreeBrowserRS21;dxmdsRS21;dxSkinDevExpressDarkStyleRS21;dxSkinSharpRS21;FireDACADSDriver;vcltouch;dxSkinscxPCPainterRS21;dxServerModeRS21;emsclient;dxSkinsdxRibbonPainterRS21;VCLRESTComponents;FireDAC;VclSmp;dxBarDBNavRS21;dxSkinTheAsphaltWorldRS21;dxRibbonCustomizationFormRS21;dxSkinXmas2008BlueRS21;DataSnapConnectors;dxSkinLiquidSkyRS21;cxSchedulerGridRS21;fmxobj;dxPScxVGridLnkRS21;dxBarRS21;FireDACOracleDriver;fmxdae;dxSkinOffice2010BlueRS21;FireDACMSAccDriver;DataSnapIndy10ServerTransport;dxSkiniMaginaryRS21;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_ConsoleTarget>true</DCC_ConsoleTarget>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -70,9 +86,6 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <DCC_UnitSearchPath>..\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <Manifest_File>None</Manifest_File>
-        <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -85,10 +98,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="TestDogMau.pas"/>
-        <DCCReference Include="..\DogMau.pas"/>
-        <DCCReference Include="TestPombo.pas"/>
-        <DCCReference Include="..\Pomba.pas"/>
+        <DCCReference Include="DadosDoTempo.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -107,75 +117,8 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">DesignPatternTests.dpr</Source>
+                    <Source Name="MainSource">ProjectObserver.dpr</Source>
                 </Source>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxCoreRS21.bpl">ExpressCoreLibrary by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxGDIPlusRS21.bpl">ExpressGDI+ Library by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxThemeRS21.bpl">Express XP Theme Manager by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxOfficeCoreRS21.bpl">ExpressOfficeCore Library by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxLayoutControlRS21.bpl">ExpressLayout Control by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxSpreadSheetRS21.bpl">ExpressSpreadSheet by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxServerModeRS21.bpl">ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxWizardControlRS21.bpl">ExpressWizardControl by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxBarRS21.bpl">ExpressBars by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxComnRS21.bpl">ExpressCommonLibrary by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxmdsRS21.bpl">ExpressMemData by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxRibbonRS21.bpl">ExpressBars Ribbon controls by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxADOServerModeRS21.bpl">ADO Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxBarDBNavRS21.bpl">ExpressBars DBNavigator by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxBarExtDBItemsRS21.bpl">ExpressBars extended DB items by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxBarExtItemsRS21.bpl">ExpressBars extended items by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxorgcRS21.bpl">ExpressOrgChart by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxdborRS21.bpl">ExpressDBOrgChart by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxdbtrRS21.bpl">ExpressDBTree by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxDBXServerModeRS21.bpl">dbExpress Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxDockingRS21.bpl">ExpressDocking Library by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxFireDACServerModeRS21.bpl">FireDAC Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxFlowChartRS21.bpl">ExpressFlowChart by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxGaugeControlRS21.bpl">ExpressGaugeControl by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxHttpIndyRequestRS21.bpl">Express Cross Platform Library Indy Request Handler by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxMapControlRS21.bpl">ExpressMapControl by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxNavBarRS21.bpl">ExpressNavBar by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPDFViewerRS21.bpl">ExpressPDFViewer by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPSCoreRS21.bpl">ExpressPrinting System by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPScxCommonRS21.bpl">ExpressPrinting System Cross Platform Library by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPSLnksRS21.bpl">ExpressPrinting System ReportLinks (Standard) by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPScxExtCommonRS21.bpl">ExpressPrinting System Extended Cross Platform Library by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPScxGridLnkRS21.bpl">ExpressPrinting System ReportLink for ExpressQuantumGrid by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPSdxLCLnkRS21.bpl">ExpressPrinting System ReportLink for ExpressLayoutControl by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPScxPivotGridLnkRS21.bpl">ExpressPrinting System ReportLink for ExpressPivotGrid by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPScxSchedulerLnkRS21.bpl">ExpressPrinting System ReportLink for ExpressScheduler by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPScxTLLnkRS21.bpl">ExpressPrinting System ReportLink for ExpressQuantumTreeList by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPScxVGridLnkRS21.bpl">ExpressPrinting System ReportLink for ExpressVerticalGrid by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPSdxDBOCLnkRS21.bpl">ExpressPrinting System ReportLinks for ExpressDBOrgChart by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPSdxOCLnkRS21.bpl">ExpressPrinting System ReportLinks for ExpressOrgChart by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPSdxDBTVLnkRS21.bpl">ExpressPrinting System ReportLink for ExpressDBTree by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPSdxFCLnkRS21.bpl">ExpressPrinting System ReportLinks for ExpressFlowChart by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPSdxGaugeControlLnkRS21.bpl">ExpressPrinting System ReportLink for ExpressGauge Control by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPSdxMapControlLnkRS21.bpl">ExpressPrinting System ReportLink for ExpressMap Control by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPSdxPDFViewerLnkRS21.bpl">ExpressPrinting System ReportLink for ExpressPDFViewer by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPSdxSpreadSheetLnkRS21.bpl">ExpressPrinting System ReportLink for ExpressSpreadSheet by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPsPrVwAdvRS21.bpl">ExpressPrinting System Advanced Preview Window by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPSPrVwRibbonRS21.bpl">ExpressPrinting System Ribbon Preview Window by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxPSRichEditControlLnkRS21.bpl">ExpressPrinting System ReportLink for ExpressRichEditControl by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxRichEditControlRS21.bpl">ExpressRichEditControl by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxRichEditControlCoreRS21.bpl">ExpressRichEditControl by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxRibbonCustomizationFormRS21.bpl">ExpressBars Ribbon Customization Form by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxSkinsCoreRS21.bpl">ExpressSkins Library by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxSpellCheckerRS21.bpl">ExpressSpellChecker by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxSpreadSheetConditionalFormattingDialogsRS21.bpl">ExpressSpreadSheet Conditional Formatting Dialogs by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxSpreadSheetReportDesignerRS21.bpl">ExpressSpreadSheet Report Designer by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxTabbedMDIRS21.bpl">ExpressBars Tabbed MDI by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxTileControlRS21.bpl">ExpressTileControl by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\RS21\dxtrmdRS21.bpl">ExpressTreePrintedDataSet by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k210.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp210.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 5 VCL Professional\LibD21\dclfrxTee21.bpl">(untitled)</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 5 VCL Professional\LibD21\dclfsTee21.bpl">FastScript 1.9 Tee Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 5 VCL Professional\LibD21\dclfrxIBX21.bpl">FastReport 5.0 IBX Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 5 VCL Professional\LibD21\dclfsIBX21.bpl">FastScript 1.9 IBX Components</Excluded_Packages>
-                </Excluded_Packages>
             </Delphi.Personality>
             <Deployment>
                 <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
@@ -186,9 +129,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win32\Debug\DesignPatternTests.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win32\Debug\ProjectObserver.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>DesignPatternTests.exe</RemoteName>
+                        <RemoteName>ProjectObserver.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -524,15 +467,10 @@
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
             </Deployment>
             <Platforms>
+                <Platform value="Android">False</Platform>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>
-            <UnitTesting>
-                <TestFramework>DUnit / Delphi Win32</TestFramework>
-                <TestRunner>GUI</TestRunner>
-                <SourceProjectName>C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\Design-Patterns\Design Pattern Strategy\DesignPattern.dproj</SourceProjectName>
-                <TestProjectName/>
-            </UnitTesting>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>

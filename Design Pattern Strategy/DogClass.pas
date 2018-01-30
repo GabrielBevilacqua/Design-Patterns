@@ -10,8 +10,8 @@ type
   public
     FTipoDeLatido: ITipoDeLatido;
     FTipoDeRaca: IRacaDog;
-    procedure RacaDog;
-    procedure Latir;
+    function RacaDog: string;
+    function Latir: string;
 //    constructor Create(ATipoDeLatido: ITipoDeLatido; ATipoDeRaca: IRacaDog); reintroduce;  Construtor na classe pai, caso a classe
 //    Filho não tenha seu proprio create ("Pizza Personalizada")
   end;
@@ -25,14 +25,14 @@ implementation
 //  FTipoDeRaca := ATipoDeRaca;
 //end;
 
-procedure TDogClass.Latir;
+function TDogClass.Latir: string;
 begin
-  FTipoDeLatido.Latir;
+ Result := FTipoDeLatido.Latir;
 end;
 
-procedure TDogClass.RacaDog;
+function TDogClass.RacaDog: string;
 begin
-  FTipoDeRaca.RacaDog;
+  Result := FTipoDeRaca.RacaDog;
 end;
 
 end.

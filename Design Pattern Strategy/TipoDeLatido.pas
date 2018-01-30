@@ -4,7 +4,7 @@ interface
 
 type
   ITipoDeLatido = interface(IInterface)
-    procedure Latir;
+    function Latir: string;
   end;
 
 implementation
