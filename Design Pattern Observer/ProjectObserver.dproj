@@ -99,6 +99,9 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="DadosDoTempo.pas"/>
+        <DCCReference Include="InterfaceDoAssunto.pas"/>
+        <DCCReference Include="Observador.pas"/>
+        <DCCReference Include="InterfaceDoObservador.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
