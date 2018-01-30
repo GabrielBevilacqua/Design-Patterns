@@ -15,6 +15,7 @@ type
     function NotificarObservador: Boolean;
     function DeletarObservador(TObserver: IObservador): Boolean;
     constructor Create;
+    destructor Destroy; Override;
   end;
 
 implementation
@@ -44,6 +45,12 @@ function TDadosDoTempo.NovoObservador(TObserver: IObservador): Boolean;
 begin
   ListaDeObservadores.Add(TObserver);
   Result := True;
+end;
+
+destructor TDadosDoTempo.Destroy;
+begin
+  ListaDeObservadores.Free;
+  inherited;
 end;
 
 end.
