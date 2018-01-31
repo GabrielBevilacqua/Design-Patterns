@@ -53,7 +53,10 @@ var
   FObservador : IObservador;
 begin
   for FObservador in ListaDeObservadores do
+  begin
     FObservador.Atualizar(Temp, Hum, Press);
+  end;
+  Result := True;
 end;
 
 function TDadosDoTempo.NovoObservador(TObserver: IObservador): Boolean;
