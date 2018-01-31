@@ -3,20 +3,19 @@ unit DadosDoTempo;
 interface
 
 uses
-  System.SysUtils, InterfaceDoAssunto, InterfaceDoObservador,
-  System.Generics.Collections;
+  System.SysUtils, System.Generics.Collections, InterfaceDadosTempo,
+  InterfaceObservadorTempo;
 
 type
-  TDadosDoTempo = class(TInterfacedObject, IInterfaceDoASsunto)
+  TDadosDoTempo = class(TInterfacedObject, IInterfaceDadosTempo)
   public
     Temp, Hum, Press: Double;
-    ListaDeObservadores: TList<IObservador>;
-    function NovoObservador(TObserver: IObservador): Boolean;
+    ListaDeObservadores: TList<IObservadorTempo>;
+    function NovoObservador(TObserver: IObservadorTempo): Boolean;
     function NotificarObservador: Boolean;
-    function DeletarObservador(TObserver: IObservador): Boolean;
+    function DeletarObservador(TObserver: IObservadorTempo): Boolean;
     function DefinirTempo(Temperatura, Humidade, Pressao : Double): Boolean;
     constructor Create;
-    destructor Destroy; Override;
   end;
 
 implementation
@@ -25,7 +24,11 @@ implementation
 
 constructor TDadosDoTempo.Create;
 begin
-  ListaDeObservadores := TList<IObservador>.Create;
+  try
+    ListaDeObservadores := TList<IObservadorTempo>.Create;
+  finally
+    ListaDeObservadores.Free;
+  end;
 end;
 
 function TDadosDoTempo.DefinirTempo(Temperatura, Humidade, Pressao: Double): Boolean;
@@ -39,7 +42,7 @@ begin
   Result := True;
 end;
 
-function TDadosDoTempo.DeletarObservador(TObserver: IObservador): Boolean;
+function TDadosDoTempo.DeletarObservador(TObserver: IObservadorTempo): Boolean;
 begin
   for TObserver in ListaDeObservadores do
   begin
@@ -50,7 +53,7 @@ end;
 
 function TDadosDoTempo.NotificarObservador: Boolean;
 var
-  FObservador : IObservador;
+  FObservador : IObservadorTempo;
 begin
   for FObservador in ListaDeObservadores do
   begin
@@ -59,17 +62,11 @@ begin
   Result := True;
 end;
 
-function TDadosDoTempo.NovoObservador(TObserver: IObservador): Boolean;
+function TDadosDoTempo.NovoObservador(TObserver: IObservadorTempo): Boolean;
 begin
 // Se Nao estiver cadastrado...
   ListaDeObservadores.Add(TObserver);
   Result := True;
-end;
-
-destructor TDadosDoTempo.Destroy;
-begin
-  ListaDeObservadores.Free;
-  inherited;
 end;
 
 end.

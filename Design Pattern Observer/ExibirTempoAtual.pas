@@ -3,10 +3,10 @@ unit ExibirTempoAtual;
 interface
 
 uses
-  System.SysUtils, InterfaceDoObservador, InterfaceExibir, DadosDoTempo;
+  System.SysUtils, InterfaceExibir, DadosDoTempo, InterfaceObservadorTempo;
 
 type
-  TExibirTempoAtual = class(TInterfacedObject, IExibir, IObservador)
+  TExibirTempoAtual = class(TInterfacedObject, IExibir, IObservadorTempo)
     public
       Temp, Hum, Press : Double;
       FDadosDoTempo : TDadosDoTempo;
