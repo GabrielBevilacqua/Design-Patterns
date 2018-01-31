@@ -1,9 +1,9 @@
-unit InterfaceDoObservador;
+unit InterfaceObservadorTempo;
 
 interface
 
 type
-  IObservador = Interface(IInterface)
+  IObservadorTempo = Interface(IInterface)
      function Atualizar(Temperatura, Humidade, Pressao : Double): Double;
   end;
 

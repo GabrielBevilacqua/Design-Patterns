@@ -83,10 +83,14 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="DadosDoTempo.pas"/>
-        <DCCReference Include="InterfaceDoAssunto.pas"/>
-        <DCCReference Include="InterfaceDoObservador.pas"/>
+        <DCCReference Include="InterfaceDadosTempo.pas"/>
+        <DCCReference Include="InterfaceObservadorTempo.pas"/>
         <DCCReference Include="ExibirTempoAtual.pas"/>
         <DCCReference Include="InterfaceExibir.pas"/>
+        <DCCReference Include="NotasDoApk.pas"/>
+        <DCCReference Include="InterfaceNotas.pas"/>
+        <DCCReference Include="InterfaceObservadorApk.pas"/>
+        <DCCReference Include="ExibirNotasMondinho.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
