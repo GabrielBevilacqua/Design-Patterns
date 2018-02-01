@@ -4,7 +4,7 @@ interface
 
 type
   IObservadorTempo = Interface(IInterface)
-     function Atualizar(Temperatura, Humidade, Pressao : Double): Double;
+     procedure Atualizar(Temperatura, Humidade, Pressao : Double);
   end;
 
 implementation

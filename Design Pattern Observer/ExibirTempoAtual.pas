@@ -10,7 +10,7 @@ type
     public
       Temp, Hum, Press : Double;
       FDadosDoTempo : TDadosDoTempo;
-      function Atualizar(Temperatura, Humidade, Pressao : Double): Double;
+      procedure Atualizar(Temperatura, Humidade, Pressao : Double);
       procedure Exibir;
       constructor Create(Tempo : TDadosDoTempo);
   end;
@@ -25,14 +25,13 @@ begin
   FDadosDoTempo.NovoObservador(Self);
 end;
 
-function TExibirTempoAtual.Atualizar(Temperatura, Humidade, Pressao: Double): Double;
+procedure TExibirTempoAtual.Atualizar(Temperatura, Humidade, Pressao : Double);
 begin
   Temp := Temperatura;
   Hum := Humidade;
   Press := Pressao;
 
   Exibir;
-  Result := 1;
 end;
 
 procedure TExibirTempoAtual.Exibir;

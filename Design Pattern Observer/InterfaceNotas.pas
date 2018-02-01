@@ -7,8 +7,8 @@ uses
 
 type
   IInterfaceNotas = interface(IInterface)
-    procedure NovoObservador(IObserver : IObservadorApk);
-    procedure DeletarObservador(IObserver : IObservadorApk);
+    procedure NovoObservador(IObserv : IObservadorApk);
+    procedure DeletarObservador(IObserv : IObservadorApk);
     procedure NotificarObservadores;
   end;
 

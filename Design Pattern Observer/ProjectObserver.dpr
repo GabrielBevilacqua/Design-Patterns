@@ -23,25 +23,27 @@ var
   FExibirNotas : TExibirNotasMondinho;
 
 begin
-  try
     FTempoAtual := TDadosDoTempo.Create;
     FNotasDoApk := TNotasDoApk.Create;
 
     FExibirTemp := TExibirTempoAtual.Create(FTempoAtual);
     FExibirNotas := TExibirNotasMondinho.Create(FNotasDoApk);
+  try
     try
+      FTempoAtual.NovoObservador(FExibirTemp);
       FTempoAtual.DefinirTempo(27, 10, 35);
-      FTempoAtual.NotificarObservador;
 
+      FNotasDoApk.NovoObservador(FExibirNotas);
       FNotasDoApk.DefinirNotas(6, 7);
-      FNotasDoApk.NotificarObservadores;
     except
       on E: Exception do
         Writeln(E.ClassName, ': ', E.Message);
     end;
   finally
 //    FTempoAtual.Free;
-//    FExibir.Free;     Nao precisa dar free, pois as classes herdam de uma interface
+//    FExibirTemp.Free;
+//    FNotasDoApk.Free;
+//    FExibirNotas.Free;    Nao precisa dar free, pois as classes herdam de uma interface
   end;
 
 end.
