@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{60EBEC21-DC9B-45C7-8F16-0D726B5C28F6}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ProjectObserver.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Test\ProjectObserverTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ProjectObserver">
+        <MSBuild Projects="ProjectObserver.dproj"/>
+    </Target>
+    <Target Name="ProjectObserver:Clean">
+        <MSBuild Projects="ProjectObserver.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProjectObserver:Make">
+        <MSBuild Projects="ProjectObserver.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProjectObserverTests">
+        <MSBuild Projects="Test\ProjectObserverTests.dproj"/>
+    </Target>
+    <Target Name="ProjectObserverTests:Clean">
+        <MSBuild Projects="Test\ProjectObserverTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProjectObserverTests:Make">
+        <MSBuild Projects="Test\ProjectObserverTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ProjectObserver;ProjectObserverTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ProjectObserver:Clean;ProjectObserverTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ProjectObserver:Make;ProjectObserverTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

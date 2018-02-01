@@ -12,7 +12,6 @@ type
     FNotasDoApk : TNotasDoApk;
     procedure Exibir;
     procedure Atualizar(PrimeiraNota , SegundaNota: Double);
-    constructor Create(Notas : TNotasDoApk);
   end;
 
 implementation
@@ -25,12 +24,6 @@ begin
   SNota := SegundaNota;
 
   Exibir;
-end;
-
-constructor TExibirNotasMondinho.Create(Notas: TNotasDoApk);
-begin
-  FNotasDoApk := Notas;
-  FNotasDoApk.NovoObservador(Self);
 end;
 
 procedure TExibirNotasMondinho.Exibir;

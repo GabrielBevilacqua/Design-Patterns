@@ -16,18 +16,18 @@ uses
   ExibirNotasMondinho in 'ExibirNotasMondinho.pas';
 
 var
-  FTempoAtual : TDadosDoTempo;
-  FNotasDoApk : TNotasDoApk;
+  FTempoAtual: TDadosDoTempo;
+  FNotasDoApk: TNotasDoApk;
 
-  FExibirTemp : TExibirTempoAtual;
-  FExibirNotas : TExibirNotasMondinho;
+  FExibirTemp: TExibirTempoAtual;
+  FExibirNotas: TExibirNotasMondinho;
 
 begin
-    FTempoAtual := TDadosDoTempo.Create;
-    FNotasDoApk := TNotasDoApk.Create;
+  FTempoAtual := TDadosDoTempo.Create;
+  FNotasDoApk := TNotasDoApk.Create;
 
-    FExibirTemp := TExibirTempoAtual.Create(FTempoAtual);
-    FExibirNotas := TExibirNotasMondinho.Create(FNotasDoApk);
+  FExibirTemp := TExibirTempoAtual.Create;
+  FExibirNotas := TExibirNotasMondinho.Create;
   try
     try
       FTempoAtual.NovoObservador(FExibirTemp);
@@ -40,10 +40,10 @@ begin
         Writeln(E.ClassName, ': ', E.Message);
     end;
   finally
-//    FTempoAtual.Free;
-//    FExibirTemp.Free;
-//    FNotasDoApk.Free;
-//    FExibirNotas.Free;    Nao precisa dar free, pois as classes herdam de uma interface
+    // FTempoAtual.Free;
+    // FExibirTemp.Free;
+    // FNotasDoApk.Free;
+    // FExibirNotas.Free;    Nao precisa dar free, pois as classes herdam de uma interface
   end;
 
 end.
