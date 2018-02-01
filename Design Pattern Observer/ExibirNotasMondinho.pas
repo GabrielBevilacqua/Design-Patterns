@@ -8,7 +8,7 @@ uses
 type
   TExibirNotasMondinho = class(TInterfacedObject, IExibir, IObservadorApk)
   public
-    PNota, SNota, Media: Double;
+    PNota, SNota: Double;
     FNotasDoApk : TNotasDoApk;
     procedure Exibir;
     procedure Atualizar(PrimeiraNota , SegundaNota: Double);
@@ -34,6 +34,8 @@ begin
 end;
 
 procedure TExibirNotasMondinho.Exibir;
+var
+  Media : Double;
 begin
   Media := (PNota + SNota) / 2;
   Writeln(Format('A Priemeira Nota Do Mondinho foi %n A Segunda Nota Foi %n e sua média foi %n', [PNota, SNota, Media]));

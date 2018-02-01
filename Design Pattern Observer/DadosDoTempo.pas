@@ -11,11 +11,12 @@ type
   public
     Temp, Hum, Press: Double;
     ListaDeObservadores: TList<IObservadorTempo>;
-    function NovoObservador(TObserver: IObservadorTempo): Boolean;
-    function NotificarObservador: Boolean;
-    function DeletarObservador(TObserver: IObservadorTempo): Boolean;
-    function DefinirTempo(Temperatura, Humidade, Pressao : Double): Boolean;
+    procedure NovoObservador(TObserver: IObservadorTempo);
+    procedure NotificarObservador;
+    procedure DeletarObservador(TObserver: IObservadorTempo);
+    procedure DefinirTempo(Temperatura, Humidade, Pressao : Double);
     constructor Create;
+    destructor Dstroy;
   end;
 
 implementation
@@ -24,14 +25,10 @@ implementation
 
 constructor TDadosDoTempo.Create;
 begin
-  try
-    ListaDeObservadores := TList<IObservadorTempo>.Create;
-  finally
-    ListaDeObservadores.Free;
-  end;
+  ListaDeObservadores := TList<IObservadorTempo>.Create;
 end;
 
-function TDadosDoTempo.DefinirTempo(Temperatura, Humidade, Pressao: Double): Boolean;
+procedure TDadosDoTempo.DefinirTempo(Temperatura, Humidade, Pressao : Double);
 begin
   Temp := Temperatura;
   Hum := Humidade;
@@ -39,19 +36,22 @@ begin
 
 // se ocorrer mudanças...
   NotificarObservador;
-  Result := True;
 end;
 
-function TDadosDoTempo.DeletarObservador(TObserver: IObservadorTempo): Boolean;
+procedure TDadosDoTempo.DeletarObservador(TObserver: IObservadorTempo);
 begin
   for TObserver in ListaDeObservadores do
   begin
     ListaDeObservadores.Delete(ListaDeObservadores.IndexOf(TObserver));
   end;
-  Result := True;
 end;
 
-function TDadosDoTempo.NotificarObservador: Boolean;
+destructor TDadosDoTempo.Dstroy;
+begin
+  ListaDeObservadores.Free;
+end;
+
+procedure TDadosDoTempo.NotificarObservador;
 var
   FObservador : IObservadorTempo;
 begin
@@ -59,14 +59,12 @@ begin
   begin
     FObservador.Atualizar(Temp, Hum, Press);
   end;
-  Result := True;
 end;
 
-function TDadosDoTempo.NovoObservador(TObserver: IObservadorTempo): Boolean;
+procedure TDadosDoTempo.NovoObservador(TObserver: IObservadorTempo);
 begin
 // Se Nao estiver cadastrado...
   ListaDeObservadores.Add(TObserver);
-  Result := True;
 end;
 
 end.

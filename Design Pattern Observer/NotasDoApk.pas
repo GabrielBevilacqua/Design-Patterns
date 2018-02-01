@@ -11,11 +11,12 @@ type
   public
     PNota, SNota, Media : Double;
     ListaObserver: TList<IObservadorApk>;
-    procedure NovoObservador(TObserver: IObservadorApk);
-    procedure DeletarObservador(TObserver: IObservadorApk);
+    procedure NovoObservador(TObserv: IObservadorApk);
+    procedure DeletarObservador(TObserv: IObservadorApk);
     procedure NotificarObservadores;
-    procedure DefinirNotas(Nota01 , Nota02: Double);
+    procedure DefinirNotas(PrimeiraNota , SegundaNota: Double);
     constructor Create;
+    destructor  Dstroy;
   end;
 
 implementation
@@ -24,25 +25,26 @@ implementation
 
 constructor TNotasDoApk.Create;
 begin
-  try
-    ListaObserver := TList<IObservadorApk>.Create;
-  finally
-    ListaObserver.Free
-  end;
+  ListaObserver := TList<IObservadorApk>.Create;
 end;
 
-procedure TNotasDoApk.DefinirNotas(Nota01, Nota02: Double);
+procedure TNotasDoApk.DefinirNotas(PrimeiraNota , SegundaNota: Double);
 begin
-  PNota := Nota01;
-  SNota := Nota02;
+  PNota := PrimeiraNota;
+  SNota := SegundaNota;
 
   NotificarObservadores;
 end;
 
-procedure TNotasDoApk.DeletarObservador(TObserver: IObservadorApk);
+procedure TNotasDoApk.DeletarObservador(TObserv: IObservadorApk);
 begin
-  for TObserver in ListaObserver do
-    ListaObserver.Delete(ListaObserver.IndexOf(TObserver));
+  for TObserv in ListaObserver do
+    ListaObserver.Delete(ListaObserver.IndexOf(TObserv));
+end;
+
+destructor TNotasDoApk.Dstroy;
+begin
+  ListaObserver.Free;
 end;
 
 procedure TNotasDoApk.NotificarObservadores;
@@ -53,9 +55,9 @@ begin
     Observadores.Atualizar(PNota, SNota);
 end;
 
-procedure TNotasDoApk.NovoObservador(TObserver: IObservadorApk);
+procedure TNotasDoApk.NovoObservador(TObserv: IObservadorApk);
 begin
-  ListaObserver.Add(TObserver);
+  ListaObserver.Add(TObserv);
 end;
 
 end.
