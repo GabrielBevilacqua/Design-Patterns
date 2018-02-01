@@ -9,21 +9,11 @@ type
   TExibirTempoAtual = class(TInterfacedObject, IExibir, IObservadorTempo)
     public
       Temp, Hum, Press : Double;
-      FDadosDoTempo : TDadosDoTempo;
       procedure Atualizar(Temperatura, Humidade, Pressao : Double);
       procedure Exibir;
-      constructor Create(Tempo : TDadosDoTempo);
   end;
 
 implementation
-
-{ TExibir }
-
-constructor TExibirTempoAtual.Create(Tempo: TDadosDoTempo);
-begin
-  FDadosDoTempo := Tempo;
-  FDadosDoTempo.NovoObservador(Self);
-end;
 
 procedure TExibirTempoAtual.Atualizar(Temperatura, Humidade, Pressao : Double);
 begin

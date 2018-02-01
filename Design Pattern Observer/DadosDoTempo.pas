@@ -16,7 +16,7 @@ type
     procedure DeletarObservador(TObserver: IObservadorTempo);
     procedure DefinirTempo(Temperatura, Humidade, Pressao : Double);
     constructor Create;
-    destructor Dstroy;
+    destructor Destroy; override;
   end;
 
 implementation
@@ -46,7 +46,7 @@ begin
   end;
 end;
 
-destructor TDadosDoTempo.Dstroy;
+destructor TDadosDoTempo.Destroy;
 begin
   ListaDeObservadores.Free;
 end;
