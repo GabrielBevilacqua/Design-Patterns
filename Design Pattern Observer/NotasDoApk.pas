@@ -16,7 +16,7 @@ type
     procedure NotificarObservadores;
     procedure DefinirNotas(PrimeiraNota , SegundaNota: Double);
     constructor Create;
-    destructor  Dstroy;
+    destructor  Destroy; Override;
   end;
 
 implementation
@@ -42,8 +42,9 @@ begin
     ListaObserver.Delete(ListaObserver.IndexOf(TObserv));
 end;
 
-destructor TNotasDoApk.Dstroy;
+destructor TNotasDoApk.Destroy;
 begin
+  inherited;
   ListaObserver.Free;
 end;
 
