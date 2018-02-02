@@ -33,6 +33,11 @@ begin
       FTempoAtual.NovoObservador(FExibirTemp);
       FTempoAtual.DefinirTempo(27, 10, 35);
 
+      FTempoAtual.NovoObservador(FExibirTemp);
+      FTempoAtual.DeletarObservador(FExibirTemp);
+
+      FTempoAtual.DefinirTempo(10, 10, 10);
+
       FNotasDoApk.NovoObservador(FExibirNotas);
       FNotasDoApk.DefinirNotas(6, 7);
     except
