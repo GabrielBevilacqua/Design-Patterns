@@ -40,10 +40,12 @@ begin
         Writeln(E.ClassName, ': ', E.Message);
     end;
   finally
-    // FTempoAtual.Free;
-    // FExibirTemp.Free;
-    // FNotasDoApk.Free;
-    // FExibirNotas.Free;    Nao precisa dar free, pois as classes herdam de uma interface
+    ReportMemoryLeaksOnShutdown := True;
+     FTempoAtual.Free;
+     FNotasDoApk.Free;
+
+//     FExibirTemp.Free;
+//     FExibirNotas.Free;    //Nao precisa dar free, pois as classes herdam de uma interface
   end;
 
 end.
