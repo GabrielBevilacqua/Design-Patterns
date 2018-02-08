@@ -6,7 +6,7 @@ uses
   Bebida, System.SysUtils;
 
 type
-  TAdicionais = class abstract(TBebida)
+  TAdicionais = class(TBebida)
   public
     FBebida : TBebida;
     function GetDescricao: String; override;

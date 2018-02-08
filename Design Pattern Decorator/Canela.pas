@@ -16,12 +16,12 @@ implementation
 
 function TCanela.Custo: Currency;
 begin
-  Result := inherited Custo + 0.50;
+  Result := inherited + 0.50;
 end;
 
 function TCanela.GetDescricao: string;
 begin
-  Result := inherited GetDescricao + ' Canela';
+  Result := inherited + ' Canela';
 end;
 
 end.
