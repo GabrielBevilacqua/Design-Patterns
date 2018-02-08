@@ -17,8 +17,7 @@ implementation
 
 function TCasquinha.Custo: Currency;
 begin
-  inherited;
-  Result := Custo + 1.50;
+  Result := inherited Custo + 1.50;
 end;
 
 function TCasquinha.GetDescricao: String;
