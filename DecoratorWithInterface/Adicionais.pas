@@ -21,7 +21,7 @@ implementation
 
 constructor TAdicionais.Create(Sorvete: ISorvete);
 begin
-  Self.TipoDeSorvete := Sorvete;
+  TipoDeSorvete := Sorvete;
 end;
 
 function TAdicionais.Custo: Currency;

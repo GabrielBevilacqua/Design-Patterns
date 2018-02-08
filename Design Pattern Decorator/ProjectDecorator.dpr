@@ -18,7 +18,7 @@ var
   Pedido02: TBebida;
 begin
   Pedido01 := TExpresso.Create;
-  Pedido01 := TCreme.Create(Pedido01);
+  Pedido01 := TCanela.Create(Pedido01);
   Pedido01 := TCreme.Create(Pedido01);
   Pedido02 := TCapucino.Create;
   Pedido02 := TCanela.Create(Pedido02);
