@@ -8,14 +8,14 @@ uses
 type
   TPizzariaNY = class(TPizzaStore)
   public
-    function CriarPizza: string; override;
+    function FazerPizza: string; override;
   end;
 
 implementation
 
 { TPizzariaNY }
 
-function TPizzariaNY.CriarPizza: string;
+function TPizzariaNY.FazerPizza: string;
 begin
 //
 end;

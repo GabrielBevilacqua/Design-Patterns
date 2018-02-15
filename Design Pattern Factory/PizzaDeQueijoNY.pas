@@ -3,13 +3,20 @@ unit PizzaDeQueijoNY;
 interface
 
 uses
-  System.SysUtils, PizzariaNY;
+  System.SysUtils, Pizza;
 
 type
-  TQueijoNY = class
-
+  TQueijoNY = class(TPizza)
+  public
+    function PizzaDeQueijo: string; override;
   end;
 
 implementation
 
+{ TQueijoNY }
+
+function TQueijoNY.PizzaDeQueijo: string;
+begin
+//
+end;
 end.
