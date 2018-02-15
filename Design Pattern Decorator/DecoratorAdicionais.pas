@@ -6,11 +6,38 @@ uses
   Bebida, System.SysUtils;
 
 type
-  TAdicionais = class abstract(TBebida)
+  TAdicionais = class(TBebida)
   public
-    function GetDescricao: String; override; abstract;
+    FBebida : TBebida;
+    function GetDescricao: String; override;
+    function Custo: Currency; override;
+    constructor Create(Bebida : TBebida);
+    destructor Destroy; override;
   end;
 
 implementation
+
+{ TAdicionais }
+
+constructor TAdicionais.Create(Bebida: TBebida);
+begin
+  FBebida := Bebida;
+end;
+
+function TAdicionais.Custo: Currency;
+begin
+  Result := FBebida.Custo
+end;
+
+destructor TAdicionais.Destroy;
+begin
+  FBebida.Free;
+  inherited;
+end;
+
+function TAdicionais.GetDescricao: String;
+begin
+  Result := FBebida.GetDescricao;
+end;
 
 end.
