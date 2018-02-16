@@ -7,7 +7,6 @@ program ProjectFactory;
 uses
   System.SysUtils,
   PizzaStore in 'PizzaStore.pas',
-  PizzariaNY in 'PizzariaNY.pas',
   PizzaDeQueijoNY in 'PizzaDeQueijoNY.pas',
   Pizza in 'Pizza.pas';
 

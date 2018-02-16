@@ -10,7 +10,6 @@ type
 
   TPizzaClass = class of TPizza;
 
-
   TPizzaStore = class
   private
     class var FPizzas: TArray<TPizzaClass>;

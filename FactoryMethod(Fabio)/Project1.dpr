@@ -20,6 +20,7 @@ begin
       Pizza.Deliver;
     finally
       Pizza.Free;
+      ReportMemoryLeaksOnShutdown := True;
     end;
     Readln;
   except
