@@ -83,7 +83,6 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="PizzaStore.pas"/>
-        <DCCReference Include="PizzariaNY.pas"/>
         <DCCReference Include="PizzaDeQueijoNY.pas"/>
         <DCCReference Include="Pizza.pas"/>
         <BuildConfiguration Include="Release">

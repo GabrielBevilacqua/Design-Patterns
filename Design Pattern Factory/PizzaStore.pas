@@ -6,23 +6,28 @@ uses
   Pizza, System.SysUtils;
 
 type
+  TTipoDePizzas = class of TPizza;
+
   TPizzaStore = class
-//  private
-//    Pizza : TPizza;
+  private
+    CardapioPizzas: TArray<TTipoDePizzas>;
   public
-    function FazerPizza: string; virtual;
-    procedure PedirPizza; virtual;
+    procedure RegistrarPizza(Pizza : TTipoDePizzas); virtual;
+    function PedirPizza(TipoDePizza: string): TPizza; dd
   end;
 
 implementation
 
-function TPizzaStore.FazerPizza: string;
+{ TPizzaStore }
+
+function TPizzaStore.PedirPizza(TipoDePizza: string): TPizza;
 begin
 //
 end;
 
-procedure TPizzaStore.PedirPizza;
+procedure TPizzaStore.RegistrarPizza(Pizza: TTipoDePizzas);
 begin
 //
 end;
+
 end.
