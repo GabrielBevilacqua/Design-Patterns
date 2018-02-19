@@ -13,14 +13,24 @@ uses
 var
   Pedido: TPizza;
   Pedido02: TPizza;
+  P: TPedido;
 begin
-  Pedido := nil;//perguntar sobre isso]
+  P := TPedido.Create;
+  try
+    P.Pedir(2, 'TQuatroQueijosNY');
+    P.Pedir(1, 'TQuatroQueijosTX');
+    P.MostrarPedido;
+    Readln;
+  finally
+    P.Free;
+  end;
+
+  Pedido := nil;//perguntar sobre isso
   Pedido02 := nil;
   try
     Pedido := TPizzaStore.PedirPizza('TQuatroQueijosNY');
     Pedido02 := TPizzaStore.PedirPizza('TQuatroQueijosTX');
     try
-      Writeln(Pedido.PrepararPizza);
       Writeln(Pedido.PrepararPizza);
       Pedido.Entregar;
       Readln;
