@@ -20,6 +20,8 @@ type
     class var FPizzas: TArray<TPizza>;
     class procedure Pedir(Qtde: Integer; const Tipo: string);
     class procedure MostrarPedido;
+  public
+    destructor Destroy; override;
   end;
 
 implementation
@@ -33,7 +35,7 @@ begin
   Result := nil;
   for ClasseDaPizza in CardapioPizzas do
     if ClasseDaPizza.ClassName = Pizzas then
-      Result := (ClasseDaPizza.Create); //perguntar sobre isso
+      Result := (ClasseDaPizza.Create);
 
   if Result = nil then
     raise Exception.Create('Pizza não cadastrada.');
@@ -45,6 +47,15 @@ begin
 end;
 
 { TPedido }
+
+destructor TPedido.Destroy;
+var
+  P: TPizza;
+begin
+  for P in FPizzas do
+    P.Free;
+  inherited;
+end;
 
 class procedure TPedido.MostrarPedido;
 var

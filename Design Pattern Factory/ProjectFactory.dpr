@@ -25,7 +25,7 @@ begin
     P.Free;
   end;
 
-  Pedido := nil;//perguntar sobre isso
+  Pedido := nil;
   Pedido02 := nil;
   try
     Pedido := TPizzaStore.PedirPizza('TQuatroQueijosNY');
