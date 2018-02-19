@@ -5,21 +5,17 @@ interface
 type
   TPizza = class
   public
-    function PrepararPizza: string; virtual;
-    procedure EntregarPizza;
+    function PrepararPizza: string; virtual; abstract;
+    procedure Entregar;
   end;
 
 implementation
 
 { TPizza }
 
-procedure TPizza.EntregarPizza;
+procedure TPizza.Entregar;
 begin
-//
+  Writeln('Pizza Saiu para entrega!');
 end;
 
-function TPizza.PrepararPizza: string;
-begin
-//
-end;
 end.
