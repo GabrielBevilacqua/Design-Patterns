@@ -10,24 +10,28 @@ type
 
   TPizzaStore = class
   private
-    CardapioPizzas: TArray<TTipoDePizzas>;
+    class var CardapioPizzas: TArray<TTipoDePizzas>;
   public
-    procedure RegistrarPizza(Pizza : TTipoDePizzas); virtual;
-    function PedirPizza(TipoDePizza: string): TPizza; dd
+    class procedure RegistrarPizza(Pizza: TTipoDePizzas); virtual;
+    class function PedirPizza(Pizzas: string): TPizza;
   end;
 
 implementation
 
 { TPizzaStore }
 
-function TPizzaStore.PedirPizza(TipoDePizza: string): TPizza;
+class function TPizzaStore.PedirPizza(Pizzas: string): TPizza;
+var
+  ClasseDaPizza: TTipoDePizzas;
 begin
-//
+  for ClasseDaPizza in CardapioPizzas do
+    if ClasseDaPizza.ClassName = Pizzas then
+      Result := (ClasseDaPizza.Create); //perguntar sobre isso
 end;
 
-procedure TPizzaStore.RegistrarPizza(Pizza: TTipoDePizzas);
+class procedure TPizzaStore.RegistrarPizza(Pizza: TTipoDePizzas);
 begin
-//
+  CardapioPizzas := CardapioPizzas + [Pizza];
 end;
 
 end.
