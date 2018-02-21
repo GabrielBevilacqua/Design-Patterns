@@ -3,22 +3,27 @@ unit InterfacePizzaStore;
 interface
 
 type
-  IEsfiha = interface;
-  IPizza = interface;
+  TEsfiha = class;
+  TPizza = class;
 
-  IPizzaStore = interface(IInterface)
-    function PesquisarEsfiha: IEsfiha;
-    function PesquisarPizza: IPizza;
+  TTipoDePizza = class of TPizza;
+  TTipoDeEsfiha = class of TEsfiha;
+
+  TPizzaStore = class
+    function PesquisarEsfiha: TEsfiha; virtual; abstract;
+    function PesquisarPizza: TPizza; virtual; abstract;
+    class procedure RegistrarPizza(Pizza: TTipoDePizza); virtual; abstract;
+    class procedure RegistrarEsfiha(Esfiha: TTipoDeEsfiha); virtual; abstract;
   end;
 
-  IEsfiha = interface(IInterface)
-    function SaborDaEsfiha: string;
-    function ValorDaEsfiha: currency;
+  TEsfiha = class
+    function SaborDaEsfiha: string; virtual; abstract;
+    function ValorDaEsfiha: currency; virtual; abstract;
   end;
 
-  IPizza = interface(IInterface)
-    function SaborDaPizza: string;
-    function ValorDaPizza: currency;
+  TPizza = class
+    function SaborDaPizza: string; virtual; abstract;
+    function ValorDaPizza: currency; virtual; abstract;
   end;
 
 implementation

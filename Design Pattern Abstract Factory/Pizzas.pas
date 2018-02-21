@@ -6,19 +6,22 @@ uses
   System.SysUtils, InterfacePizzaStore;
 
 type
-  TEdmotoPizzas = class(TInterfacedObject, IPizza)
+  TEdmotoPizzas = class(TPizza)
   public
-    function SaborDaPizza: string;
-    function ValorDaPizza: Currency;
+    function SaborDaPizza: string; override;
+    function ValorDaPizza: Currency; override;
   end;
 
-  TJamalPizzas = class(TInterfacedObject, IPizza)
+  TJamalPizzas = class(TPizza)
   public
-    function SaborDaPizza: string;
-    function ValorDaPizza: Currency;
+    function SaborDaPizza: string; override;
+    function ValorDaPizza: Currency; override;
   end;
 
 implementation
+
+uses
+  PizzariaJamal, EsfihariaEdmoto;
 
 { TEdmotoPizzas }
 
@@ -36,12 +39,15 @@ end;
 
 function TJamalPizzas.SaborDaPizza: string;
 begin
-  Result := 'Pizza Do Jamal Topzera!';
+  Result := 'Pizza Topzera do Jamal!';
 end;
 
 function TJamalPizzas.ValorDaPizza: Currency;
 begin
-  Result := 28.50;
+  Result := 25.00
 end;
 
+initialization
+  TPizzariaJamal.RegistrarPizza(TJamalPizzas);
+  TEsfihariaEdmoto.RegistrarPizza(TEdmotoPizzas);
 end.
