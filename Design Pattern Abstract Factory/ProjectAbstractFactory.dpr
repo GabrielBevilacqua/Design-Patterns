@@ -16,13 +16,18 @@ var
   Tela: TTelaDeSelecao;
   Loja: integer;
 
-  EsfihariaEdmoto: IPizzaStore;
-  PizzariaJamal: IPizzaStore;
+  EsfihariaEdmoto: TPizzaStore;
+  PizzariaJamal: TPizzaStore;
 
-  Esfiha: IEsfiha;
-  Pizza: IPizza;
+  Esfiha: TEsfiha;
+  Pizza: TPizza;
 
 begin
+  PizzariaJamal := nil;
+  EsfihariaEdmoto := nil;
+  Tela := nil;
+  Esfiha := nil;
+  Pizza := nil;
   try
     Tela := TTelaDeSelecao.Create;
     Tela.Tela;
@@ -53,11 +58,8 @@ begin
     end;
     try
       Writeln(Pizza.SaborDaPizza);
-      Readln;
       Writeln(Format('%m', [Pizza.ValorDaPizza]));
-      Readln;
       Writeln(Esfiha.SaborDaEsfiha);
-      Readln;
       Writeln(Format('%m', [Esfiha.ValorDaEsfiha]));
       Readln;
     except
@@ -65,6 +67,10 @@ begin
         Writeln(E.ClassName, ': ', E.Message);
     end;
   finally
+    PizzariaJamal.Free;
+    EsfihariaEdmoto.Free;
+    Pizza.Free;
+    Esfiha.Free;
     Tela.Free;
     ReportMemoryLeaksOnShutdown := True;
   end;

@@ -6,29 +6,34 @@ uses
   System.SysUtils, InterfacePizzaStore;
 
 type
-  TEdmotoEsfihas = class(TInterfacedObject, IEsfiha)
+  TEdmotoEsfihas = class(TEsfiha)
   public
-    function SaborDaEsfiha: string;
-    function ValorDaEsfiha: Currency;
+    function SaborDaEsfiha: string; override;
+    function ValorDaEsfiha: Currency; override;
   end;
 
-  TJamalEsfihas = class(TInterfacedObject, IEsfiha)
+  TJamalEsfihas = class(TEsfiha)
   public
-    function SaborDaEsfiha: string;
-    function ValorDaEsfiha: Currency;
-  end;
+    function SaborDaEsfiha: string; override;
+    function ValorDaEsfiha: Currency; override;
+    end;
 
 implementation
+
+uses
+  EsfihariaEdmoto, PizzariaJamal;
 
 { TEdmotoEsfihas }
 
 function TEdmotoEsfihas.SaborDaEsfiha: string;
 begin
-  Result := 'Esfiha Topzera do Edmoto!';
+  inherited;
+  Result := 'Pizza Topzera do Jamal!'
 end;
 
 function TEdmotoEsfihas.ValorDaEsfiha: Currency;
 begin
+  inherited;
   Result := 1.50;
 end;
 
@@ -36,12 +41,17 @@ end;
 
 function TJamalEsfihas.SaborDaEsfiha: string;
 begin
+  inherited;
   Result := 'Esfiha Meia Boca do Jamal!';
 end;
 
 function TJamalEsfihas.ValorDaEsfiha: Currency;
 begin
+  inherited;
   Result := 1.00;
 end;
 
+initialization
+  TPizzariaJamal.RegistrarEsfiha(TJamalEsfihas);
+  TEsfihariaEdmoto.RegistrarEsfiha(TEdmotoEsfihas);
 end.
