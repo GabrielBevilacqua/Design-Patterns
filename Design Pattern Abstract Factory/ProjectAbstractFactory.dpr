@@ -10,24 +10,20 @@ uses
   EsfihariaEdmoto in 'EsfihariaEdmoto.pas',
   Esfihas in 'Esfihas.pas',
   Pizzas in 'Pizzas.pas',
-  TelaDeSelecao in 'TelaDeSelecao.pas';
+  TelaDeSelecao in 'TelaDeSelecao.pas',
+  FazerPedidoEdmoto in 'FazerPedidoEdmoto.pas';
 
 var
   Tela: TTelaDeSelecao;
-  Loja: integer;
+  Loja: Integer;
 
-  EsfihariaEdmoto: TPizzaStore;
-  PizzariaJamal: TPizzaStore;
-
-  Esfiha: TEsfiha;
-  Pizza: TPizza;
+  PedidoDeEsfihas: TPedidoEsfiha;
+  PedidoDePizzas: TPedidoPizza;
 
 begin
-  PizzariaJamal := nil;
-  EsfihariaEdmoto := nil;
+  PedidoDePizzas := nil;
+  PedidoDeEsfihas := nil;
   Tela := nil;
-  Esfiha := nil;
-  Pizza := nil;
   try
     Tela := TTelaDeSelecao.Create;
     Tela.Tela;
@@ -41,15 +37,14 @@ begin
     case Loja of
       1:
         begin
-          EsfihariaEdmoto := TEsfihariaEdmoto.Create;
-          Pizza := EsfihariaEdmoto.PesquisarPizza;
-          Esfiha := EsfihariaEdmoto.PesquisarEsfiha;
+          PedidoDeEsfihas.PedirEsfihaEdmoto(2, 'TEdmotoEsfihas');
+          PedidoDeEsfihas.MostrarPedidoDeEsfihaEdmoto;
+          PedidoDePizzas.PedirPizzaEdmoto(2, 'TEdmotoPizzas');
+          PedidoDePizzas.MostrarPedidoDePizzaEdmoto;
         end;
       2:
         begin
-          PizzariaJamal := TPizzariaJamal.Create;
-          Pizza := PizzariaJamal.PesquisarPizza;
-          Esfiha := PizzariaJamal.PesquisarEsfiha;
+          Writeln('JAMAL!');
         end;
       3:
         begin
@@ -57,20 +52,14 @@ begin
         end;
     end;
     try
-      Writeln(Pizza.SaborDaPizza);
-      Writeln(Format('%m', [Pizza.ValorDaPizza]));
-      Writeln(Esfiha.SaborDaEsfiha);
-      Writeln(Format('%m', [Esfiha.ValorDaEsfiha]));
-      Readln;
+    Readln;
     except
       on E: Exception do
         Writeln(E.ClassName, ': ', E.Message);
     end;
   finally
-    PizzariaJamal.Free;
-    EsfihariaEdmoto.Free;
-    Pizza.Free;
-    Esfiha.Free;
+    PedidoDeEsfihas.Free;
+    PedidoDePizzas.Free;
     Tela.Free;
     ReportMemoryLeaksOnShutdown := True;
   end;
