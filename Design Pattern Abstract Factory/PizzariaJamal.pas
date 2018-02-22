@@ -7,9 +7,10 @@ uses
 
 type
   TPizzariaJamal = class(TPizzaStore)
-  private
-    class var CardapioJamal: TArray<TTipoDePizza>;
   public
+    class var PizzasJamal: TArray<TTipoDePizza>;
+    class var EsfihasJamal: TArray<TTipoDeEsfiha>;
+
     function PesquisarEsfiha: TEsfiha; override;
     class procedure RegistrarEsfiha(Esfiha: TTipoDeEsfiha); override;
     function PesquisarPizza: TPizza; override;
@@ -17,8 +18,6 @@ type
   end;
 
 implementation
-
-{ TPizzariaJamal }
 
 function TPizzariaJamal.PesquisarEsfiha: TEsfiha;
 begin
@@ -35,13 +34,13 @@ end;
 class procedure TPizzariaJamal.RegistrarEsfiha(Esfiha: TTipoDeEsfiha);
 begin
   inherited;
-  //
+  EsfihasJamal := EsfihasJamal + [Esfiha];
 end;
 
 class procedure TPizzariaJamal.RegistrarPizza(Pizza: TTipoDePizza);
 begin
   inherited;
-  CardapioJamal := CardapioJamal + [Pizza];
+  PizzasJamal := PizzasJamal + [Pizza];
 end;
 
 end.
