@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
   Data.DBXJSON, Data.DBXJSONCommon, Data.DBXJSONReflect, System.JSON,
-  System.JSONConsts;
+  System.JSONConsts, System.IOUtils;
 
 type
   TForm1 = class(TForm)
@@ -18,12 +18,11 @@ type
     procedure btnCarregarCsvClick(Sender: TObject);
     procedure btnCarregarJsonClick(Sender: TObject);
     procedure btnCarregarXmlClick(Sender: TObject);
-  private
-    procedure ConverterJSON;
-    function ConverterJSON02: TArray<string>;
-  const
-    ArquivoJSON = 'C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\'
+  private const
+    ArquivoJSON =
+      'C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\'
       + 'Design-Patterns\Abstract Factory Conversor\mockdata\data.json';
+    procedure ConverterJSON;
   public
     { Public declarations }
   end;
@@ -58,22 +57,12 @@ var
   ValorJSON: TJSONValue;
   ItemJSON: TJSONValue;
 begin
-  ListaJSON := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(ArquivoJSON), 0) as TJSONArray;
+  ListaJSON := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(TFile.ReadAllText(ArquivoJSON)), 0) as TJSONArray;
   for ValorJSON in ListaJSON do
   begin
     for ItemJSON in TJSONArray(ValorJSON) do
       rchTextos.Lines.Add(Format('%s : %s', [TJSONPair(ItemJSON).JsonString.Value, TJSONPair(ItemJSON).JsonValue.Value]));
   end;
-end;
-
-function TForm1.ConverterJSON02: TArray<string>;
-var
-  NomeDoArquivo: TFileName;
-  ValorJSON, ItemJSON: TJSONValue;
-  ObjetoJSON: TJSONObject;
-  Pair: TJSONPair;
-begin
-
 end;
 
 end.
