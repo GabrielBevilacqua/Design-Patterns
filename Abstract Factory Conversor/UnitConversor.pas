@@ -20,17 +20,10 @@ type
     procedure btnCarregarXmlClick(Sender: TObject);
   private
     procedure ConverterJSON;
-    const
-      ArquivoJSON = '['+
-      '{"id": 2,'+
-      '"first_name": "Carson",'+
-      '"last_name": "Milkins",' +
-      '"email": "cmilkins1@arstechnica.com",'+
-      '"gender": "Male",' +
-      '"ip_address": "38.64.34.40"}'+
-        ']';
-//   ArquivoJSON := 'C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\'
-//      + 'Design-Patterns\Abstract Factory Conversor\mockdata\data.json';
+    function ConverterJSON02: TArray<string>;
+  const
+    ArquivoJSON = 'C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\'
+      + 'Design-Patterns\Abstract Factory Conversor\mockdata\data.json';
   public
     { Public declarations }
   end;
@@ -44,7 +37,8 @@ implementation
 
 procedure TForm1.btnCarregarCsvClick(Sender: TObject);
 begin
-   rchTextos.Lines.LoadFromFile('C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\Design-Patterns\Abstract Factory Conversor\mockdata\data.csv');
+  rchTextos.Lines.LoadFromFile
+    ('C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\Design-Patterns\Abstract Factory Conversor\mockdata\data.csv');
 end;
 
 procedure TForm1.btnCarregarJsonClick(Sender: TObject);
@@ -54,7 +48,8 @@ end;
 
 procedure TForm1.btnCarregarXmlClick(Sender: TObject);
 begin
-  rchTextos.Lines.LoadFromFile('C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\Design-Patterns\Abstract Factory Conversor\mockdata\data.xml');
+  rchTextos.Lines.LoadFromFile
+    ('C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\Design-Patterns\Abstract Factory Conversor\mockdata\data.xml');
 end;
 
 procedure TForm1.ConverterJSON;
@@ -69,6 +64,15 @@ begin
     for ItemJSON in TJSONArray(ValorJSON) do
       rchTextos.Lines.Add(Format('%s : %s', [TJSONPair(ItemJSON).JsonString.Value, TJSONPair(ItemJSON).JsonValue.Value]));
   end;
+end;
+
+function TForm1.ConverterJSON02: TArray<string>;
+var
+  NomeDoArquivo: TFileName;
+  ValorJSON, ItemJSON: TJSONValue;
+  ObjetoJSON: TJSONObject;
+  Pair: TJSONPair;
+begin
 
 end;
 
