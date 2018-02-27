@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   Caption = 'Form1'
   ClientHeight = 575
-  ClientWidth = 549
+  ClientWidth = 822
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -25,7 +25,7 @@ object Form1: TForm1
   object rchTextos: TRichEdit
     Left = 8
     Top = 8
-    Width = 537
+    Width = 377
     Height = 505
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -53,5 +53,30 @@ object Form1: TForm1
     Caption = 'Carregar Csv'
     TabOrder = 3
     OnClick = btnCarregarCsvClick
+  end
+  object gridJSON: TDBGrid
+    Left = 432
+    Top = 8
+    Width = 353
+    Height = 505
+    DataSource = dsJSON
+    TabOrder = 4
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object cdsJSON: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspJSON'
+    Left = 704
+    Top = 176
+  end
+  object dsJSON: TDataSource
+    DataSet = cdsJSON
+    Left = 584
+    Top = 216
   end
 end

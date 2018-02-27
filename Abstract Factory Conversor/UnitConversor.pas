@@ -7,7 +7,8 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
   Data.DBXJSON, Data.DBXJSONCommon, Data.DBXJSONReflect, System.JSON,
-  System.JSONConsts, System.IOUtils;
+  System.JSONConsts, System.IOUtils, Data.DB, Datasnap.DBClient,
+  Datasnap.Provider, Vcl.Grids, Vcl.DBGrids;
 
 type
   TForm1 = class(TForm)
@@ -15,6 +16,9 @@ type
     btnCarregarXml: TButton;
     btnCarregarCsv: TButton;
     rchTextos: TRichEdit;
+    gridJSON: TDBGrid;
+    cdsJSON: TClientDataSet;
+    dsJSON: TDataSource;
     procedure btnCarregarCsvClick(Sender: TObject);
     procedure btnCarregarJsonClick(Sender: TObject);
     procedure btnCarregarXmlClick(Sender: TObject);
@@ -22,7 +26,6 @@ type
     ArquivoJSON =
       'C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\'
       + 'Design-Patterns\Abstract Factory Conversor\mockdata\data.json';
-    procedure ConverterJSON;
   public
     { Public declarations }
   end;
@@ -31,6 +34,9 @@ var
   Form1: TForm1;
 
 implementation
+
+uses
+  JSONToDataSet;
 
 {$R *.dfm}
 
@@ -42,27 +48,13 @@ end;
 
 procedure TForm1.btnCarregarJsonClick(Sender: TObject);
 begin
-  ConverterJSON;
+  TJSONToDataSet.Converter(ArquivoJSON, cdsJSON);
 end;
 
 procedure TForm1.btnCarregarXmlClick(Sender: TObject);
 begin
   rchTextos.Lines.LoadFromFile
     ('C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\Design-Patterns\Abstract Factory Conversor\mockdata\data.xml');
-end;
-
-procedure TForm1.ConverterJSON;
-var
-  ListaJSON: TJSONArray;
-  ValorJSON: TJSONValue;
-  ItemJSON: TJSONValue;
-begin
-  ListaJSON := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(TFile.ReadAllText(ArquivoJSON)), 0) as TJSONArray;
-  for ValorJSON in ListaJSON do
-  begin
-    for ItemJSON in TJSONArray(ValorJSON) do
-      rchTextos.Lines.Add(Format('%s : %s', [TJSONPair(ItemJSON).JsonString.Value, TJSONPair(ItemJSON).JsonValue.Value]));
-  end;
 end;
 
 end.
