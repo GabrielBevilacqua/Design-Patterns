@@ -26,6 +26,12 @@ type
     ArquivoJSON =
       'C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\'
       + 'Design-Patterns\Abstract Factory Conversor\mockdata\data.json';
+    ArquivoXML =
+      'C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\'
+      + 'Design-Patterns\Abstract Factory Conversor\mockdata\data.xml';
+    ArquivoCSV =
+      'C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\Design-Patterns\'
+      + 'Abstract Factory Conversor\mockdata\data.csv';
   public
     { Public declarations }
   end;
@@ -36,14 +42,14 @@ var
 implementation
 
 uses
-  JSONToDataSet;
+  JSONToDataSet, CSVToDataSet;
 
 {$R *.dfm}
 
 procedure TForm1.btnCarregarCsvClick(Sender: TObject);
 begin
-  rchTextos.Lines.LoadFromFile
-    ('C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\Design-Patterns\Abstract Factory Conversor\mockdata\data.csv');
+//  TCSVToDataSet.Converter(ArquivoCSV, x);
+  TCSVToDataSet.Testando(ArquivoCSV);
 end;
 
 procedure TForm1.btnCarregarJsonClick(Sender: TObject);
@@ -53,8 +59,7 @@ end;
 
 procedure TForm1.btnCarregarXmlClick(Sender: TObject);
 begin
-  rchTextos.Lines.LoadFromFile
-    ('C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\Design-Patterns\Abstract Factory Conversor\mockdata\data.xml');
+  // rchTextos.Lines.LoadFromFile;
 end;
 
 end.

@@ -3,7 +3,8 @@ program ProjectConversor;
 uses
   Vcl.Forms,
   UnitConversor in 'UnitConversor.pas' {Form1},
-  JSONToDataSet in 'JSONToDataSet.pas';
+  JSONToDataSet in 'JSONToDataSet.pas',
+  CSVToDataSet in 'CSVToDataSet.pas';
 
 {$R *.res}
 
