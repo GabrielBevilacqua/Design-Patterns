@@ -4,7 +4,8 @@ uses
   Vcl.Forms,
   UnitConversor in 'UnitConversor.pas' {Form1},
   JSONToDataSet in 'JSONToDataSet.pas',
-  CSVToDataSet in 'CSVToDataSet.pas';
+  CSVToDataSet in 'CSVToDataSet.pas',
+  XMlToDataSet in 'XMlToDataSet.pas';
 
 {$R *.res}
 

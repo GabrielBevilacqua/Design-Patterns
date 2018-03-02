@@ -15,8 +15,7 @@ implementation
 
 { TJSONToDataSet }
 
-class procedure TJSONToDataSet.Converter(const CaminhoDoArqv: string; DataSet:
-    TClientDataSet);
+class procedure TJSONToDataSet.Converter(const CaminhoDoArqv: string; DataSet: TClientDataSet);
 var
   ListaJSON: TJSONArray;
   ValorJSON: TJSONValue;
