@@ -33,7 +33,7 @@ end;
 class procedure TCSVToDataSet.Testando(CaminhoDoArqv: string);
 var
   ListaDeDados, ListaDeItens: TStringList;
-  I, Cont: integer;
+  I: integer;
   LinhaAtual: string;
 begin
   ListaDeDados := TStringList.Create;
@@ -45,14 +45,14 @@ begin
       LinhaAtual := ListaDeItens[I];
       Split(LinhaAtual, ',', ListaDeDados);
 
-      Form1.rchTextos.Lines.Add(ListaDeDados[I]);
+//      Form1.rchTextos.Lines.Add(ListaDeDados[I]);
 
-//      Form1.rchTextos.Lines.Add(ListaDeDados[0]);
-//      Form1.rchTextos.Lines.Add(ListaDeDados[1]);
-//      Form1.rchTextos.Lines.Add(ListaDeDados[2]);
-//      Form1.rchTextos.Lines.Add(ListaDeDados[3]);
-//      Form1.rchTextos.Lines.Add(ListaDeDados[4]);
-//      Form1.rchTextos.Lines.Add(ListaDeDados[5]);
+      Form1.rchTextos.Lines.Add(ListaDeDados[0]);
+      Form1.rchTextos.Lines.Add(ListaDeDados[1]);
+      Form1.rchTextos.Lines.Add(ListaDeDados[2]);
+      Form1.rchTextos.Lines.Add(ListaDeDados[3]);
+      Form1.rchTextos.Lines.Add(ListaDeDados[4]);
+      Form1.rchTextos.Lines.Add(ListaDeDados[5]);
 
     end;
   finally

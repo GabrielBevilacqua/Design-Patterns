@@ -42,24 +42,28 @@ var
 implementation
 
 uses
-  JSONToDataSet, CSVToDataSet;
+  JSONToDataSet, CSVToDataSet, XMlToDataSet;
 
 {$R *.dfm}
 
 procedure TForm1.btnCarregarCsvClick(Sender: TObject);
 begin
-//  TCSVToDataSet.Converter(ArquivoCSV, x);
+//  TCSVToDataSet.Converter(ArquivoCSV, DataSet);
+  rchTextos.Lines.Clear;
   TCSVToDataSet.Testando(ArquivoCSV);
 end;
 
 procedure TForm1.btnCarregarJsonClick(Sender: TObject);
 begin
+  rchTextos.Lines.Clear;
   TJSONToDataSet.Converter(ArquivoJSON, cdsJSON);
 end;
 
 procedure TForm1.btnCarregarXmlClick(Sender: TObject);
 begin
-  // rchTextos.Lines.LoadFromFile;
+//  TXMLToDataSet.Converter(ArquivoXML, DataSet);
+  rchTextos.Lines.Clear;
+  TXMLToDataSet.Testando(ArquivoXML);
 end;
 
 end.
