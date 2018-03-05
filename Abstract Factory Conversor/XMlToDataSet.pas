@@ -3,13 +3,14 @@ unit XMlToDataSet;
 interface
 
 uses
-  System.Win.ComObj, Winapi.msxml, System.SysUtils, System.IOUtils;
+  System.Win.ComObj, Winapi.msxml, System.SysUtils, System.IOUtils,
+  Datasnap.DBClient, Data.DB;
 
 type
   EvalidationError = class(Exception);
 
   TXMLToDataSet = class
-  class procedure Testando(CaminhoDoArqv: string);
+    class procedure Testando(CaminhoDoArqv: string; DataSet: TClientDataSet);
   end;
 
 implementation
@@ -19,25 +20,60 @@ uses
 
 { TXMLToDataSet }
 
-class procedure TXMLToDataSet.Testando(CaminhoDoArqv: string);
+class procedure TXMLToDataSet.Testando(CaminhoDoArqv: string;
+  DataSet: TClientDataSet);
 var
   XML: IXMLDOMDocument;
-  Node: IXMLDOMNode;
-  Node_Row: IXMLDOMNodeList;
-  I: integer;
+  RowNode: IXMLDOMNode;
+  ChildNode: IXMLDOMNode;
+  NodeRow: IXMLDOMNodeList;
+  Field : TField;
 begin
+  DataSet.Close;
+  DataSet.Fields.Clear;
   XML := CreateOleObject('Microsoft.XMLDOM') as IXMLDOMDocument;
-  XML.async := False;
   XML.load(CaminhoDoArqv);
   if XML.parseError.errorCode <> 0 then
     raise EvalidationError.Create('Error :' + XML.parseError.reason);
 
-  Node_Row := XML.selectNodes('/root/row');
-  for I := 0 to Node_Row.length -1 do
+  NodeRow := XML.selectNodes('/root/row');
+  if NodeRow.length = 0 then
+    Exit;
+
+  RowNode := NodeRow.item[0];
+
+  while RowNode <> nil do
   begin
-    Node := Node_Row.item[I];
-    Form1.rchTextos.Lines.Add(Node.text);
+    ChildNode := RowNode.childNodes.item[0];
+    while ChildNode <> nil do
+    begin
+      Field := TWideStringField.Create(DataSet);
+      Field.Name := '';
+      Field.FieldName := ChildNode.nodeName;
+      Field.DataSet := DataSet;
+
+      ChildNode := ChildNode.nextSibling;
+    end;
+      Break;
   end;
+
+  DataSet.Close;
+  DataSet.CreateDataSet;
+  while RowNode <> nil do
+  begin
+    ChildNode := RowNode.childNodes.item[0];
+    DataSet.Insert;
+    while ChildNode <> nil do
+    begin
+      DataSet.FieldByName(ChildNode.nodeName).Value := ChildNode.text;
+      Form1.rchTextos.Lines.Add(ChildNode.nodeName + ChildNode.text);
+      ChildNode := ChildNode.nextSibling;
+    end;
+    RowNode := RowNode.nextSibling;
+    if RowNode <> nil then
+      DataSet.Insert;
+  end;
+
 end;
 
 end.
