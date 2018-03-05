@@ -22,6 +22,8 @@ var
   ItemJSON: TJSONValue;
   Field: TField;
 begin
+  DataSet.Close;
+  DataSet.Fields.Clear;
   ListaJSON := nil;
   try
     ListaJSON := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(TFile.ReadAllText(CaminhoDoArqv)), 0) as TJSONArray;
@@ -35,7 +37,7 @@ begin
         Field.FieldName := TJSONPair(ItemJSON).JsonString.Value;
         Field.DataSet := DataSet
       end;
-    end;
+     end;
 
     DataSet.CreateDataSet;
     for ValorJSON in ListaJSON do

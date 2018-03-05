@@ -50,7 +50,7 @@ procedure TForm1.btnCarregarCsvClick(Sender: TObject);
 begin
 //  TCSVToDataSet.Converter(ArquivoCSV, DataSet);
   rchTextos.Lines.Clear;
-  TCSVToDataSet.Testando(ArquivoCSV);
+  TCSVToDataSet.Testando(ArquivoCSV, cdsJSON);
 end;
 
 procedure TForm1.btnCarregarJsonClick(Sender: TObject);
@@ -63,7 +63,7 @@ procedure TForm1.btnCarregarXmlClick(Sender: TObject);
 begin
 //  TXMLToDataSet.Converter(ArquivoXML, DataSet);
   rchTextos.Lines.Clear;
-  TXMLToDataSet.Testando(ArquivoXML);
+  TXMLToDataSet.Testando(ArquivoXML, cdsJSON);
 end;
 
 end.
