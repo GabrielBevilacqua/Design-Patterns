@@ -19,11 +19,13 @@ var
 
   PedidoDeEsfihas: TPedidoEsfiha;
   PedidoDePizzas: TPedidoPizza;
+  kk: TPizzaStore;
 
 begin
   PedidoDePizzas := nil;
   PedidoDeEsfihas := nil;
   Tela := nil;
+  kk := nil;
   try
     Tela := TTelaDeSelecao.Create;
     Tela.Tela;
@@ -44,7 +46,8 @@ begin
         end;
       2:
         begin
-          Writeln('JAMAL!');
+          kk := TPizzariaJamal.Create;
+          Writeln(kk.PesquisarEsfiha.SaborDaEsfiha);
         end;
       3:
         begin
@@ -61,6 +64,7 @@ begin
     PedidoDeEsfihas.Free;
     PedidoDePizzas.Free;
     Tela.Free;
+    kk.Free;
     ReportMemoryLeaksOnShutdown := True;
   end;
 

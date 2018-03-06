@@ -59,7 +59,7 @@ object Form1: TForm1
     Top = 8
     Width = 353
     Height = 505
-    DataSource = dsJSON
+    DataSource = dsConversor
     TabOrder = 4
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -67,16 +67,16 @@ object Form1: TForm1
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
-  object cdsJSON: TClientDataSet
+  object cdsConversor: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'dspJSON'
     Left = 704
     Top = 176
   end
-  object dsJSON: TDataSource
-    DataSet = cdsJSON
-    Left = 584
-    Top = 216
+  object dsConversor: TDataSource
+    DataSet = cdsConversor
+    Left = 704
+    Top = 128
   end
 end
