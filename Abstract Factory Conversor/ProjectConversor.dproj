@@ -90,6 +90,8 @@
         <DCCReference Include="JSONToDataSet.pas"/>
         <DCCReference Include="CSVToDataSet.pas"/>
         <DCCReference Include="XMlToDataSet.pas"/>
+        <DCCReference Include="InterfaceConversor.pas"/>
+        <DCCReference Include="FactoryConversor.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

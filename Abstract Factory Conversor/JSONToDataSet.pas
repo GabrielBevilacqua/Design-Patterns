@@ -8,7 +8,8 @@ uses
 
 type
   TJSONToDataSet = class
-    class procedure Converter(const CaminhoDoArqv: string; DataSet: TClientDataSet);
+    class procedure Converter(const CaminhoDoArqv: string;
+      DataSet: TClientDataSet);
   end;
 
 implementation
@@ -26,7 +27,8 @@ begin
   DataSet.Fields.Clear;
   ListaJSON := nil;
   try
-    ListaJSON := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(TFile.ReadAllText(CaminhoDoArqv)), 0) as TJSONArray;
+    ListaJSON := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(TFile.ReadAllText(CaminhoDoArqv)), 0)
+      as TJSONArray;
     if ListaJSON.Count > 0 then
     begin
       ValorJSON := ListaJSON.Items[0];
@@ -37,7 +39,7 @@ begin
         Field.FieldName := TJSONPair(ItemJSON).JsonString.Value;
         Field.DataSet := DataSet
       end;
-     end;
+    end;
 
     DataSet.CreateDataSet;
     for ValorJSON in ListaJSON do

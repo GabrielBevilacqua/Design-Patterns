@@ -20,14 +20,13 @@ uses
 
 { TXMLToDataSet }
 
-class procedure TXMLToDataSet.Testando(CaminhoDoArqv: string;
-  DataSet: TClientDataSet);
+class procedure TXMLToDataSet.Testando(CaminhoDoArqv: string; DataSet: TClientDataSet);
 var
   XML: IXMLDOMDocument;
   RowNode: IXMLDOMNode;
   ChildNode: IXMLDOMNode;
   NodeRow: IXMLDOMNodeList;
-  Field : TField;
+  Field: TField;
 begin
   DataSet.Close;
   DataSet.Fields.Clear;
@@ -54,10 +53,9 @@ begin
 
       ChildNode := ChildNode.nextSibling;
     end;
-      Break;
+    Break;
   end;
 
-  DataSet.Close;
   DataSet.CreateDataSet;
   while RowNode <> nil do
   begin

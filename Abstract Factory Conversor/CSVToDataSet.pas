@@ -14,8 +14,7 @@ type
 
 implementation
 
-class procedure TCSVToDataSet.Split(Linha: string; Delimiter: char;
-    ListaDeStrings: TStringList);
+class procedure TCSVToDataSet.Split(Linha: string; Delimiter: char; ListaDeStrings: TStringList);
 begin
   ListaDeStrings.Delimiter := Delimiter;
   ListaDeStrings.DelimitedText := Linha;
@@ -24,31 +23,42 @@ end;
 class procedure TCSVToDataSet.Testando(CaminhoDoArqv: string; DataSet: TClientDataSet);
 var
   ListaDeDados, ListaDeItens: TStringList;
-  I: integer;
+  I, J, K: integer;
   LinhaAtual: string;
   Field: TField;
 begin
   ListaDeDados := TStringList.Create;
   ListaDeItens := TStringList.Create;
+
+  DataSet.Close;
+  DataSet.Fields.Clear;
   try
     ListaDeItens.LoadFromFile(CaminhoDoArqv);
 
-    for I := Low to High do
-    begin
-      LinhaAtual := ListaDeItens[0];
-      Split(LinhaAtual, ',', ListaDeDados);
-      Field := TWideStringField.Create(DataSet);
-      Field.Name := '';
-      Field.FieldName := LinhaAtual;
-      Field.DataSet := DataSet;
-    end;
-
-    for I := 1 to ListaDeItens.Count -1 do
+    for I := 0 to ListaDeItens.Count - 1 do
     begin
       LinhaAtual := ListaDeItens[I];
       Split(LinhaAtual, ',', ListaDeDados);
 
-      Form1.rchTextos.Lines.Add(LinhaAtual);
+      if I = 0 then
+      begin
+        for J := 0 to ListaDeDados.Count - 1 do
+        begin
+          Field := TWideStringField.Create(DataSet);
+          Field.Name := '';
+          Field.FieldName := ListaDeDados[J];
+          Field.DataSet := DataSet;
+        end;
+        DataSet.CreateDataSet;
+        continue;
+      end;
+
+      DataSet.Insert;
+      for K := 0 to ListaDeDados.Count - 1 do
+        DataSet.Fields[K].Value := ListaDeDados[K];
+        DataSet.Post;
+
+        Form1.rchTextos.Lines.Add(LinhaAtual);
     end;
   finally
     ListaDeDados.Free;

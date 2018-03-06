@@ -17,8 +17,8 @@ type
     btnCarregarCsv: TButton;
     rchTextos: TRichEdit;
     gridJSON: TDBGrid;
-    cdsJSON: TClientDataSet;
-    dsJSON: TDataSource;
+    cdsConversor: TClientDataSet;
+    dsConversor: TDataSource;
     procedure btnCarregarCsvClick(Sender: TObject);
     procedure btnCarregarJsonClick(Sender: TObject);
     procedure btnCarregarXmlClick(Sender: TObject);
@@ -48,22 +48,20 @@ uses
 
 procedure TForm1.btnCarregarCsvClick(Sender: TObject);
 begin
-//  TCSVToDataSet.Converter(ArquivoCSV, DataSet);
   rchTextos.Lines.Clear;
-  TCSVToDataSet.Testando(ArquivoCSV, cdsJSON);
+  TCSVToDataSet.Testando(ArquivoCSV, cdsConversor);
 end;
 
 procedure TForm1.btnCarregarJsonClick(Sender: TObject);
 begin
   rchTextos.Lines.Clear;
-  TJSONToDataSet.Converter(ArquivoJSON, cdsJSON);
+  TJSONToDataSet.Converter(ArquivoJSON, cdsConversor);
 end;
 
 procedure TForm1.btnCarregarXmlClick(Sender: TObject);
 begin
-//  TXMLToDataSet.Converter(ArquivoXML, DataSet);
   rchTextos.Lines.Clear;
-  TXMLToDataSet.Testando(ArquivoXML, cdsJSON);
+  TXMLToDataSet.Testando(ArquivoXML, cdsConversor);
 end;
 
 end.
