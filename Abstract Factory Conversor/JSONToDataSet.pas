@@ -3,31 +3,40 @@ unit JSONToDataSet;
 interface
 
 uses
-  Datasnap.DBClient, UnitConversor, System.JSON, Data.DB, System.SysUtils,
-  System.IOUtils;
+  Datasnap.DBClient, System.JSON, Data.DB, System.SysUtils,
+  System.IOUtils, InterfaceConversor;
 
 type
-  TJSONToDataSet = class
-    class procedure Converter(const CaminhoDoArqv: string;
-      DataSet: TClientDataSet);
+   TJSONToDataSet = class(TConversor)
+  private
+    DataSet: TClientDataSet;
+    CaminhoDoArqv: String;
+  public
+    function Converter: string; override;
+    constructor Create(const Arquivo: string; ClientDataSet: TClientDataSet); override;
   end;
 
 implementation
 
+uses
+  UnitConversor;
+
 { TJSONToDataSet }
 
-class procedure TJSONToDataSet.Converter(const CaminhoDoArqv: string; DataSet: TClientDataSet);
+function TJSONToDataSet.Converter: string;
 var
   ListaJSON: TJSONArray;
   ValorJSON: TJSONValue;
   ItemJSON: TJSONValue;
   Field: TField;
 begin
+  inherited;
   DataSet.Close;
   DataSet.Fields.Clear;
   ListaJSON := nil;
   try
-    ListaJSON := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(TFile.ReadAllText(CaminhoDoArqv)), 0)
+    ListaJSON := TJSONObject.ParseJSONValue
+      (TEncoding.ASCII.GetBytes(TFile.ReadAllText(CaminhoDoArqv)), 0)
       as TJSONArray;
     if ListaJSON.Count > 0 then
     begin
@@ -55,6 +64,13 @@ begin
   finally
     ListaJSON.Free;
   end;
+end;
+
+constructor TJSONToDataSet.Create(const Arquivo: string; ClientDataSet: TClientDataSet);
+begin
+  inherited;
+  CaminhoDoArqv := Arquivo;
+  DataSet := ClientDataSet;
 end;
 
 end.

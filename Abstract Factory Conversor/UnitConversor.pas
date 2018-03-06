@@ -8,7 +8,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
   Data.DBXJSON, Data.DBXJSONCommon, Data.DBXJSONReflect, System.JSON,
   System.JSONConsts, System.IOUtils, Data.DB, Datasnap.DBClient,
-  Datasnap.Provider, Vcl.Grids, Vcl.DBGrids;
+  Datasnap.Provider, Vcl.Grids, Vcl.DBGrids, InterfaceConversor,
+  FactoryConversor;
 
 type
   TForm1 = class(TForm)
@@ -53,9 +54,20 @@ begin
 end;
 
 procedure TForm1.btnCarregarJsonClick(Sender: TObject);
+var
+  Factory: TFactoryConversor;
+  Conversor: TConversor;
 begin
-  rchTextos.Lines.Clear;
-  TJSONToDataSet.Converter(ArquivoJSON, cdsConversor);
+  Conversor := nil;
+  Factory := TFactoryConversor.Create;
+  try
+    rchTextos.Lines.Clear;
+    Conversor := Factory.ConverterArquivo(ArquivoJSON, cdsConversor);
+    Conversor.Converter;
+  finally
+    Conversor.Free;
+    Factory.Free;
+  end;
 end;
 
 procedure TForm1.btnCarregarXmlClick(Sender: TObject);
