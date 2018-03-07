@@ -8,7 +8,7 @@ uses
 type
   TConversor = class
   function Converter: string; virtual; abstract;
-  constructor Create(const CaminhoDoArqv: string; DataSet: TClientDataSet); virtual; abstract;
+  constructor Create(const Arquivo: string; ClientDataSet: TClientDataSet); virtual; abstract;
   end;
 
 implementation
