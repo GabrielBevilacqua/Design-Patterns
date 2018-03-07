@@ -23,7 +23,11 @@ type
     procedure btnCarregarCsvClick(Sender: TObject);
     procedure btnCarregarJsonClick(Sender: TObject);
     procedure btnCarregarXmlClick(Sender: TObject);
-  private const
+  private
+    Factory: TFactoryConversor;
+    Conversor: TConversor;
+
+  const
     ArquivoJSON =
       'C:\Users\Gabriel Scavassa\Documents\Embarcadero\Studio\Projects\Design Patterns\'
       + 'Design-Patterns\Abstract Factory Conversor\mockdata\data.json';
@@ -49,14 +53,19 @@ uses
 
 procedure TForm1.btnCarregarCsvClick(Sender: TObject);
 begin
-  rchTextos.Lines.Clear;
-  TCSVToDataSet.Testando(ArquivoCSV, cdsConversor);
+  Conversor := nil;
+  Factory := TFactoryConversor.Create;
+  try
+    rchTextos.Lines.Clear;
+    Conversor := Factory.ConverterArquivo(ArquivoCSV, cdsConversor);
+    Conversor.Converter;
+  finally
+    Conversor.Free;
+    Factory.Free;
+  end;
 end;
 
 procedure TForm1.btnCarregarJsonClick(Sender: TObject);
-var
-  Factory: TFactoryConversor;
-  Conversor: TConversor;
 begin
   Conversor := nil;
   Factory := TFactoryConversor.Create;
@@ -72,8 +81,16 @@ end;
 
 procedure TForm1.btnCarregarXmlClick(Sender: TObject);
 begin
-  rchTextos.Lines.Clear;
-  TXMLToDataSet.Testando(ArquivoXML, cdsConversor);
+  Conversor := nil;
+  Factory := TFactoryConversor.Create;
+  try
+    rchTextos.Lines.Clear;
+    Conversor := Factory.ConverterArquivo(ArquivoXML, cdsConversor);
+    Conversor.Converter;
+  finally
+    Conversor.Free;
+    Factory.Free;
+  end;
 end;
 
 end.

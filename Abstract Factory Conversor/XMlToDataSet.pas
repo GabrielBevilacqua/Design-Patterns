@@ -4,13 +4,18 @@ interface
 
 uses
   System.Win.ComObj, Winapi.msxml, System.SysUtils, System.IOUtils,
-  Datasnap.DBClient, Data.DB;
+  Datasnap.DBClient, Data.DB, InterfaceConversor;
 
 type
   EvalidationError = class(Exception);
 
-  TXMLToDataSet = class
-    class procedure Testando(CaminhoDoArqv: string; DataSet: TClientDataSet);
+  TXMLToDataSet = class(TConversor)
+  private
+    DataSet: TClientDataSet;
+    CaminhoDoArqv: String;
+  public
+    function Converter: string; override;
+    constructor Create(const Arquivo: string; ClientDataSet: TClientDataSet); override;
   end;
 
 implementation
@@ -20,7 +25,14 @@ uses
 
 { TXMLToDataSet }
 
-class procedure TXMLToDataSet.Testando(CaminhoDoArqv: string; DataSet: TClientDataSet);
+constructor TXMLToDataSet.Create(const Arquivo: string; ClientDataSet: TClientDataSet);
+begin
+  inherited;
+  CaminhoDoArqv := Arquivo;
+  DataSet := ClientDataSet;
+end;
+
+function TXMLToDataSet.Converter: string;
 var
   XML: IXMLDOMDocument;
   RowNode: IXMLDOMNode;
@@ -28,6 +40,7 @@ var
   NodeRow: IXMLDOMNodeList;
   Field: TField;
 begin
+  inherited;
   DataSet.Close;
   DataSet.Fields.Clear;
   XML := CreateOleObject('Microsoft.XMLDOM') as IXMLDOMDocument;
