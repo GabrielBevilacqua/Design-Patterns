@@ -35,9 +35,7 @@ begin
   DataSet.Fields.Clear;
   ListaJSON := nil;
   try
-    ListaJSON := TJSONObject.ParseJSONValue
-      (TEncoding.ASCII.GetBytes(TFile.ReadAllText(CaminhoDoArqv)), 0)
-      as TJSONArray;
+    ListaJSON := TJSONObject.ParseJSONValue(TEncoding.ASCII.GetBytes(TFile.ReadAllText(CaminhoDoArqv)), 0) as TJSONArray;
     if ListaJSON.Count > 0 then
     begin
       ValorJSON := ListaJSON.Items[0];
