@@ -5,7 +5,7 @@ interface
 type
   IComandos = Interface(IInterface)
   procedure Executar;
-  End;
+  end;
 
 implementation
 
