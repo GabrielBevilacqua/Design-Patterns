@@ -8,7 +8,8 @@ uses
   InterfaceCommandos in 'InterfaceCommandos.pas',
   Controle in 'Controle.pas',
   Luz in 'Luz.pas',
-  ComandosLuz in 'ComandosLuz.pas';
+  ComandosLuz in 'ComandosLuz.pas',
+  ComandoPadrao in 'ComandoPadrao.pas';
 
 var
   ControleRemoto: TControle;

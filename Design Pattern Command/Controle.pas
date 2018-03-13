@@ -3,7 +3,8 @@ unit Controle;
 interface
 
 uses
-  System.SysUtils, System.Generics.Collections, InterfaceCommandos;
+  System.SysUtils, System.Generics.Collections, InterfaceCommandos,
+  ComandoPadrao;
 
 type
   TControle= class
@@ -11,6 +12,7 @@ type
     BotoesLigar: TList<IComandos>;
     BotoesDesligar: TList<IComandos>;
     Undo: IComandos;
+    Padrao: TComandoPadrao;
   public
     constructor Create;
     procedure DefinirComandos(NumeroDoBotao: integer; Ligar, Desligar: IComandos);
@@ -42,9 +44,18 @@ begin
 end;
 
 constructor TControle.Create;
+var
+  I: Integer;
 begin
   BotoesLigar := TList<IComandos>.Create;
   BotoesDesligar := TList<IComandos>.Create;
+  Padrao := TComandoPadrao.Create;
+  for I := 0 to BotoesLigar.Count do
+  begin
+    BotoesLigar.Add(Padrao);
+    BotoesDesligar.Add(Padrao);
+  end;
+  Undo := Padrao;
 end;
 
 procedure TControle.DefinirComandos(NumeroDoBotao: integer; Ligar, Desligar: IComandos);
