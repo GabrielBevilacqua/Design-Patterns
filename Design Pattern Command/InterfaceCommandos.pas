@@ -5,6 +5,7 @@ interface
 type
   IComandos = Interface(IInterface)
   procedure Executar;
+  procedure Desfazer;
   end;
 
 implementation
