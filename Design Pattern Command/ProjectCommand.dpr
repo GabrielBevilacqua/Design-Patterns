@@ -13,26 +13,32 @@ uses
 var
   ControleRemoto: TControle;
   LuzDaSala: TLuz;
-  AcenderLuz: TAcenderLuz;
-  ApagarLuz: TApagarLuz;
+  AcenderLuz: IComandos;
+  ApagarLuz: IComandos;
 
 begin
+  ControleRemoto := nil;
+  LuzDaSala := nil;
   try
     ControleRemoto := TControle.Create;
     LuzDaSala := TLuz.Create;
     AcenderLuz := TAcenderLuz.Create(LuzDaSala);
     ApagarLuz := TApagarLuz.Create(LuzDaSala);
     try
-      ControleRemoto.DefinirComandos(1, AcenderLuz, ApagarLuz);
-      ControleRemoto.BotaoLigarApertado(1);
-      ControleRemoto.BotaoDesligarApertado(1);
+      ControleRemoto.DefinirComandos(0, AcenderLuz, ApagarLuz);
+      ControleRemoto.BotaoLigarApertado(0);
+      ControleRemoto.BotaoDesligarApertado(0);
+      ControleRemoto.BotaoLigarApertado(0);
+      ControleRemoto.BotaoUndoApertado;
       Readln;
     except
       on E: Exception do
         Writeln(E.ClassName, ': ', E.Message);
     end;
   finally
-
+    ReportMemoryLeaksOnShutdown := True;
+    ControleRemoto.Free;
+    LuzDaSala.Free;
   end;
 
 end.
