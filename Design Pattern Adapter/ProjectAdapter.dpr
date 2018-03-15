@@ -1,7 +1,6 @@
 program ProjectAdapter;
 
 {$APPTYPE CONSOLE}
-
 {$R *.res}
 
 uses
@@ -12,11 +11,32 @@ uses
   Piru in 'Piru.pas',
   Adapter in 'Adapter.pas';
 
+var
+  Pato: IPato;
+  Piru: IPiru;
+  Paru: TAdapterPiru;
 begin
+  Pato := TPato.Create;
+  Piru := TPiru.Create;
+  Paru := TAdapterPiru.Create(Piru);
   try
-    { TODO -oUser -cConsole Main : Insert code here }
-  except
-    on E: Exception do
-      Writeln(E.ClassName, ': ', E.Message);
+    try
+      Pato.Quack;
+      Pato.VoarMuito;
+      Readln;
+      Piru.Gluglu;
+      Piru.VoarPouco;
+      Readln;
+      Paru.Quack;
+      Paru.VoarMuito;
+      Readln;
+    except
+      on E: Exception do
+        Writeln(E.ClassName, ': ', E.Message);
+    end;
+  finally
+    ReportMemoryLeaksOnShutdown := True;
+    Paru.Free;
   end;
+
 end.
