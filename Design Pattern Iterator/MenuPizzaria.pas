@@ -10,21 +10,20 @@ type
   private
     ListaMenu: ListaDeMenus;
     Posicao: Integer;
-    NovoItemDoMenu: TItensMenu;
   public
     constructor Create;
     procedure AdicionarItem(Nome: string; Descricao: string; Preco: currency;
       Vegano: boolean);
     function CriarIterator: TMenuIterator;
-    destructor Destroy; override;
   end;
 
 implementation
 
 { TMenuPizzaria }
 
-procedure TMenuPizzaria.AdicionarItem(Nome, Descricao: string; Preco: currency;
-  Vegano: boolean);
+procedure TMenuPizzaria.AdicionarItem(Nome, Descricao: string; Preco: currency; Vegano: boolean);
+var
+  NovoItemDoMenu: TItensMenu;
 begin
   NovoItemDoMenu := TItensMenu.Create(Nome, Descricao, Preco, Vegano);
   ListaMenu := ListaMenu + [NovoItemDoMenu];
@@ -45,12 +44,6 @@ var
 begin
   Iterator := TMenuIterator.Create(ListaMenu);
   Result := Iterator;
-end;
-
-destructor TMenuPizzaria.Destroy;
-begin
-  NovoItemDoMenu.Free;
-  inherited;
 end;
 
 end.

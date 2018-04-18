@@ -41,8 +41,11 @@ begin
 end;
 
 destructor TMenuIterator.Destroy;
+var
+  Item: TItensMenu;
 begin
-  PizzaAtual.Free;
+  for Item in Self.Itens do
+    Item.Free;
   inherited;
 end;
 
